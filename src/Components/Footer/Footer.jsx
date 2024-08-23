@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from 'react';
 import astore from "../../assets/astore.png"
 import gplay from "../../assets/gplay.png"
@@ -25,11 +26,11 @@ const Footer = () => {
         <div>
           <h5 className="text-gray-800 font-semibold mb-4">CUSTOMER POLICIES</h5>
           <ul>
-            <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900">Contact Us</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900">FAQ</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900">T&C</a></li>
+            <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900"><Link to="/contact">Contact Us</Link></a></li>
+            <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900"><Link to="/contact">FAQ</Link></a></li>
+            <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900"><Link to="/contact">T&C</Link></a></li>
             <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900">Terms Of Use</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900">Track Orders</a></li>
+            <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900"><Link to="/contact">Track Orders</Link></a></li>
             <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900">Shipping</a></li>
             <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900">Cancellation</a></li>
             <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-900">Returns</a></li>

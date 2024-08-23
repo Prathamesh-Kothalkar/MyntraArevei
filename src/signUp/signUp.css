@@ -1,0 +1,84 @@
+.loginContainer{
+    height: 100vh;
+    background-color: rgb(213, 213, 213);
+}
+.loginBanner{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 80vw;
+    top: 10vh;
+    left: 10vw;
+    background-color: grey;
+}
+.cards{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 60vh;
+    width: 60vw;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0);
+    /* top: 15vh; */
+    /* left: 15vw; */
+    background-color: rgba(255, 255, 255, 0.222);
+}
+.card1{
+    background-color: rgba(255, 255, 255, 0.687);
+    /* height: 40vh; */
+    width: 300px;
+    margin: 20px 20px 20px 20px;
+    padding: 10px 10px 10px 10px;
+}
+.loginText{
+    position: absolute;
+    top: 0px;
+    font-size: 8vh;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+form{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px 10px 10px 10px;
+}
+.inputdiv{
+    margin-top: 20px;
+}
+.submitbtn{
+    margin-top: 20px;
+    padding: 10px 10px 10px 10px;
+    background-color: rgba(128, 128, 128, 0.217);
+    font-size: 20px;
+    border: none;
+}
+.submitbtn:hover{
+    border: 2px solid gray;
+}
+.lookbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: rgba(128, 128, 128, 0.217);
+    font-size: 20px;
+    border: none;
+    width: auto;
+}
+.lookbtn:hover{
+    border: 2px solid gray;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+.borderleft{
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}

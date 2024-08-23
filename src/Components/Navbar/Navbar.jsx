@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { Search, AccountCircle, FavoriteBorder, ShoppingBag, Menu } from '@mui/icons-material';
 import { Badge, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
@@ -72,7 +73,7 @@ const Navbar = () => {
                 
                 <div className="flex items-center space-x-6">
                     <div className="hidden md:flex">
-                        <AccountCircle />
+                    <Link to="/loginSignUp"><AccountCircle /></Link>
                     </div>
 
                     
