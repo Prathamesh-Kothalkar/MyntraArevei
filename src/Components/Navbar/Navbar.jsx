@@ -25,7 +25,7 @@ const Navbar = () => {
                         </IconButton>
                     </div>
 
-                    <img src={logo} alt="Logo" className='object-fit h-9 w-9' />
+                    <Link to="/loginSignUp"><img src={logo} alt="Logo" className='object-fit h-9 w-9' /></Link>
                 </div>
 
 
