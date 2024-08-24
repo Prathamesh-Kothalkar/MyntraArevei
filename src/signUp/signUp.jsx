@@ -50,14 +50,14 @@ export default function SignUp() {
                             <div className="inputdiv  animate__animated animate__zoomIn animate__delay-1s ">
                                 <div className='tandc'>By continuing, i agree to the <strong>Terms and condtition</strong></div>
                             </div>
-                            <div className="inputdiv animate__animated animate__heartBeat animate__delay-1s animate__repeat-2">
+                            <div className="inputdiv animate__animated animate__flip animate__delay-1s animate__repeat-2">
                                 <div className='lookbtn borderleft' onClick={handleClick}>
                                     <i class="fa-solid fa-eye"></i>
                                 </div>
                                 <button type="submit" className='submitbtn'>Continue</button>
                             </div>
                             <div className="inputdiv">
-                                <div className='tandc animate__animated animate__zoomIn animate__delay-0.5s'>Go to <strong><Link to="/">Home</Link></strong></div>
+                                <div className='tandc animate__animated animate__zoomIn animate__delay-1s'>Go to <strong><Link to="/">Home</Link></strong></div>
                             </div>
                         </form>
                     </div>

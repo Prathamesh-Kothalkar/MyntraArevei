@@ -38,7 +38,7 @@ export default function Login() {
                             <div className="inputdiv  animate__animated animate__zoomIn animate__delay-1s ">
                                 <div className='tandc'>By continuing, i agree to the <strong>Terms and condtition</strong></div>
                             </div>
-                            <div className="inputdiv animate__animated animate__heartBeat animate__delay-1s animate__repeat-2">
+                            <div className="inputdiv animate__animated animate__flip animate__delay-1s animate__repeat-2">
                                 <div className='lookbtn borderleft' onClick={handleClick}>
                                     <i class="fa-solid fa-eye"></i>
                                 </div>
