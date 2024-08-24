@@ -134,7 +134,7 @@ const Navbar = () => {
         {/* Icons */}
         <div className="flex items-center space-x-6">
           <div className="hidden md:flex">
-            <Link to="/loginSignUp">
+            <Link to="/login">
               <AccountCircle />
             </Link>
           </div>
@@ -209,7 +209,7 @@ const Navbar = () => {
               </div>
             ))}
             <ListItem button>
-              <Link to="/loginSignUp" onClick={() => toggleDrawer(false)}>
+              <Link to="/login" onClick={() => toggleDrawer(false)}>
                 <ListItemText primary="Login/Signup" />
               </Link>
             </ListItem>
