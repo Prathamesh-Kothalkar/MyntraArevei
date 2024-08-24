@@ -28,7 +28,7 @@ const Navbar = () => {
   const colors = {
     Men: "text-blue-500 border-blue-500",
     Women: "text-pink-500 border-pink-500",
-    Kids: "text-yellow-500 border-yellow-500",
+    Kids: "text-orange-500 border-orange-500",
     Beauty: "text-green-500 border-green-500",
   };
 
@@ -93,7 +93,7 @@ const Navbar = () => {
                   <div className="grid grid-cols-4 gap-6 p-6">
                     {Object.keys(menuItems[mainCategory]).map((subcategory) => (
                       <div key={subcategory} className="space-y-4">
-                        <h3 className="font-bold">{subcategory}</h3>
+                        <h3 className={colors[mainCategory]}>{subcategory}</h3>
                         {menuItems[mainCategory][subcategory].length > 0 ? (
                           menuItems[mainCategory][subcategory].map((item) => (
                             <Link
