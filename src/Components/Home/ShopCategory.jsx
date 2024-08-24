@@ -3,12 +3,12 @@ const ShopCategory = () => {
     const data=images;
     return <>
         <div className="">
-            <div className="text-head-text text-start text-4xl uppercase font-semibold p-2">
+            <div className="text-head-text text-start text-3xl uppercase font-semibold p-2 mt-5 my-5">
             Shop By Category
             </div>
-            <div className="flex flex-wrap justify-center">
+            <div className="grid grid-cols-2 md:flex flex-wrap justify-center ">
                 {data.map((each, index) => (
-                    <div key={index} className="m-1">
+                    <div key={index} className="m-2 hover:shadow-lg hover:shadow-black hover:scale-105 transition-all">
                         <a href={data[index]}><img className="object-contain w-52" alt="Slide Image" src={each} /></a>
                     </div>
                 ))}

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Search, AccountCircle, FavoriteBorder, ShoppingBag, Menu } from '@mui/icons-material';
 import { Badge, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import logo from "../../assets/clogo.jpeg";
+import gplay from "../../assets/gplay.png"
 
 const Navbar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -38,12 +39,31 @@ const Navbar = () => {
                         onClick={toggleDrawer(false)}
                         onKeyDown={toggleDrawer(false)}
                     >
+                        <div className="">
+                            <img src={gplay} alt="image" className="w-64 h-50 object-fill mt-1 mb-1" />
+                        </div>
                         <List>
-                            {['Men', 'Women', 'Kids', 'Home & Living', 'Beauty', 'Studio'].map((text) => (
-                                <ListItem button key={text}>
-                                    <ListItemText primary={text} />
-                                </ListItem>
-                            ))}
+                            <ListItem button>
+                                <ListItemText primary="Men"/> 
+                            </ListItem>
+                            <ListItem button>
+                                <ListItemText primary="Women"/> 
+                            </ListItem>
+                            <ListItem button>
+                                <ListItemText primary="Kids"/> 
+                            </ListItem>
+                            <ListItem button >
+                                <ListItemText primary="Home & Living"/> 
+                            </ListItem>
+                            <ListItem button >
+                                <ListItemText primary="Beauty"/> 
+                            </ListItem>
+                            <ListItem button>
+                                <ListItemText primary="Studio"/> 
+                            </ListItem>
+                            <ListItem button >
+                                <ListItemText primary="Login/Signup"/> 
+                            </ListItem>
                         </List>
                     </div>
                 </Drawer>
