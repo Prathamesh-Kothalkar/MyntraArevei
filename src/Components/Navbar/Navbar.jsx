@@ -8,6 +8,7 @@ import {
   ShoppingBag,
   Menu,
 } from "@mui/icons-material";
+
 import {
   Badge,
   IconButton,
@@ -16,7 +17,8 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
-import logo from "../../assets/clogo.jpeg";
+
+import logo from "../../assets/newlogo.jpeg";
 import gplay from "../../assets/gplay.png";
 import menuItems from "../../assets/menuItems";
 
@@ -44,7 +46,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white text-black shadow-md fixed top-0 left-0 right-0 z-20">
-      <div className="container mx-auto flex items-center justify-between p-4">
+      <div className="container mx-auto flex items-center justify-between px-2 py-3">
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <IconButton onClick={toggleDrawer(true)}>
@@ -53,7 +55,7 @@ const Navbar = () => {
         </div>
         {/* Logo */}
         <Link to="/">
-          <img src={logo} alt="Logo" className="object-fit h-9 w-9" />
+          <img src={logo} alt="Logo" className="object-fit" />
         </Link>
         {/* Desktop Menu */}
 
