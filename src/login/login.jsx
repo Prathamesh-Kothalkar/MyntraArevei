@@ -17,13 +17,10 @@ export default function Login() {
         <>
             <div className="loginContainer">
                 <div className="loginBanner">
-                    {/* <div className="loginText">Login</div> */}
+                    <div className="loginText">Login</div>
                     <div className="card1">
                         <img src={logo} alt="logo" />
                         <form action="">
-                            <div className="inputdiv">
-                                LogIn
-                            </div>
                             <div className="inputdiv">
                                 <label htmlFor="Email">
                                     Email: &nbsp;&nbsp;&nbsp;

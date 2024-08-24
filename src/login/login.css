@@ -15,6 +15,7 @@
         left: 10vw;
 
         .loginText {
+            margin: 0px auto 0px auto;            
             font-size: 8vh;
             color: black;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
