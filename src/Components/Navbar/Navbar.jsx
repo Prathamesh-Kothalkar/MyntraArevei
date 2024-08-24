@@ -88,7 +88,7 @@ const Navbar = () => {
                   leave="transition-opacity duration-150"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
-                  className="absolute left-0 top-full w-[70vw] bg-white shadow-lg rounded-lg border-t border-gray-200"
+                  className="absolute left-[-80px] top-full w-[70vw] bg-white shadow-lg rounded-lg border-t border-gray-200"
                 >
                   <div className="grid grid-cols-4 gap-6 p-6">
                     {Object.keys(menuItems[mainCategory]).map((subcategory) => (
