@@ -23,7 +23,7 @@ const ProductSlideShow = ({ text,images,links }) => {
     
     return (
         <div className="p-1">
-            <div className="text-head-text text-start text-4xl uppercase font-semibold p-2">
+            <div className="text-head-text text-start text-3xl uppercase font-semibold p-2 mt-5 my-5">
                 {text}
             </div>
             <div className="mt-3">
