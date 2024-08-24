@@ -1,82 +1,134 @@
-.contactUsContainer{
+.contactUsContainer {
     height: 100vh;
-    background-color: rgb(213, 213, 213);
-}
-.contactUsBanner{
-    position: absolute;
+    /* background-color: rgb(255, 0, 0); */
+    background-color: white;
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 80vh;
-    width: 80vw;
-    top: 10vh;
-    left: 10vw;
-    background-color: grey;
 
-    .fa-phone{
-        /* width: 100px; */
-        /* height: 100px; */
-        font-size: 300px;
-        color: black;
+    .contactNav {
+        height: 10vh;
+        width: 90vw;
+        background-color: white;
+        position: absolute;
+        top: 80px;
+        display: flex;
+        align-items: center;
+
+        .contactNavText {
+            height: 10vh;
+            /* width: 40vw; */
+            background-color: white;
+            color: rgb(0, 0, 0);
+            margin-right: 10px;
+
+            .contactNavText1 {
+                font-weight: bold;
+                font-size: larger;
+            }
+        }
+
+        .contactNavbox {
+            padding-left: 10px;
+            margin-left: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border: 2px solid rgb(207, 207, 207);
+            height: 10vh;
+            width: 70vw;
+            background-color: white;
+
+            .fa-bag-shopping {
+                font-size: 50px;
+                color: rgb(133, 133, 133);
+            }
+
+            .contactNavboxtext {
+                padding-left: 10px;
+
+                .contactNavboxtext1 {
+                    font-weight: bold;
+                    font-size: larger;
+                }
+            }
+            .loginbutton{
+                display: flex;
+                height: 8vh;
+                justify-content: center;
+                align-items: center;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-left: 20px;
+                margin-right: 20px;
+                background-color: white;
+                border: 2px solid green;
+                color: green;
+                border-radius: 10px;
+            }
+        }
     }
-}
-.cards{
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 60vh;
-    width: 60vw;
-    overflow: scroll;
-    overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0);
-    /* top: 15vh; */
-    /* left: 15vw; */
-    background-color: rgba(255, 255, 255, 0.222);
-}
-.card1{
-    background-color: rgba(255, 255, 255, 0.687);
-    /* height: 40vh; */
-    width: 250px;
-    margin: 20px 20px 20px 20px;
-    padding: 20px 20px 20px 20px;
-}
-.fa-user-large, .fa-robot{
-    display: flex;
-    justify-content: center;
-    font-size: 100px;
-    margin: 20px auto auto auto;
-}
-.text, .btn{
-    color: green;
-    display: flex;
-    justify-content: center;
-    margin: 20px auto auto auto;
-    font-size: 1rem;
-    /* font-weight: bold; */
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-.btn{
-    height: 30px;
-    width: 150px;
-    border-radius: 100px;
-    border: 2px solid black;
-    background-color: rgba(255, 255, 255, 0.141);
-}
-.btn:hover{
-    height: 30px;
-    width: 150px;
-    border-radius: 100px;
-    font-size: 1.2rem;
-    border: 2px solid black;
-    background-color: rgb(255, 255, 255);
-}
-.contactText{
-    position: absolute;
-    top: 0px;
-    font-size: 9vh;
-    color: black;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    hr{
+        position: absolute;
+        width: 90vw;
+        background-color: rgb(207, 207, 207);
+        height: 2px;
+        top: 160px;
+    }
+    .contactbody{
+        position: absolute;
+        top: 170px;
+        height: 70vh;
+        width: 80vw;
+        background-color: rgba(0, 0, 0, 0);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .contactbody1{
+            /* position: absolute; */
+            /* top: 170px; */
+            height: 50vh;
+            /* width: 20%; */
+            padding-right: 10px;
+            border-right: 2px solid rgb(207, 207, 207);
+            background-color: rgba(0, 255, 255, 0);
+            .redcolor{
+                /* color: red; */
+                color: gray;
+            }
+            .contactbody1text{
+                font-weight: bold;
+            }
+            hr{
+                position: relative;
+                top: 0;
+                width: 100%;
+            }
+        }
+        .contactbody2{
+            /* position: absolute; */
+            /* top: 170px; */
+            height: 50vh;
+            width: 60%;
+            background-color: rgba(0, 255, 255, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .loginbutton{
+                display: flex;
+                height: 8vh;
+                justify-content: center;
+                align-items: center;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-left: 20px;
+                margin-right: 20px;
+                background-color: white;
+                border: 2px solid green;
+                color: green;
+                border-radius: 10px;
+            }
+
+        }
+    }
 }
