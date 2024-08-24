@@ -17,7 +17,7 @@ export default function SignUp() {
                 <div className="loginBanner">
                     <div className="loginText">Signup</div>
                     <div className="card1">
-                        <img src="src\assets\clogo.jpeg" alt="logo" />
+                        <img src="src\assets\newlogo.jpeg" alt="logo" />
                         <form action="">
                             <div className="inputdiv">
                                 <label htmlFor="Name">
