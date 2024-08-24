@@ -6,12 +6,16 @@ import { useRef, useState } from 'react';
 import './login.css'
 export default function Login() {
     let reftype = useRef();
-    let handleClick = () => {
+    let handleClick = (e) => {
+            console.log(e.target.className);
         // ref.current.style.backgroundColor = "black";
         if (reftype.current.type == "text" && reftype.current.value != "") {
             reftype.current.type = "password";
+            e.target.className="fa-solid fa-eye-slash";
         } else if (reftype.current.type == "password" && reftype.current.value != "") {
             reftype.current.type = "text";
+            e.target.className="fa-solid fa-eye";
+
         }
     };
     return (
@@ -31,7 +35,7 @@ export default function Login() {
                             </div>
                             <div className="inputdiv">
                                 <label htmlFor="pass" className='animate__animated animate__fadeInLeft  animate__delay-1s'>
-                                    Password: &nbsp;&nbsp;&nbsp;
+                                    Password: &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-eye-slash" onClick={handleClick}></i>
                                     <input type="password" name="pass" id="pass" ref={reftype} placeholder='****' className='animate__animated animate__fadeInRightBig  animate__delay-1s'/>
                                 </label>
                             </div>
@@ -39,9 +43,6 @@ export default function Login() {
                                 <div className='tandc'>By continuing, i agree to the <strong>Terms and condtition</strong></div>
                             </div>
                             <div className="inputdiv animate__animated animate__flip animate__delay-1s animate__repeat-2">
-                                <div className='lookbtn borderleft' onClick={handleClick}>
-                                    <i class="fa-solid fa-eye"></i>
-                                </div>
                                 <button type="submit" className='submitbtn'>Continue</button>
                             </div>
                             <div className="inputdiv  animate__animated animate__zoomIn animate__delay-1s ">

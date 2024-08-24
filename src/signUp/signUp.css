@@ -12,9 +12,11 @@
     .loginBanner {
         /* position: absolute; */
         display: block;
-        height: 80vh;
+        /* height: 80vh; */
         top: 10vh;
         left: 10vw;
+        margin-top: 80px;
+
 
         .loginText {
             font-size: 8vh;
@@ -27,9 +29,10 @@
 
         .card1 {
             background-color: rgba(255, 255, 255, 0.687);
-            margin: 20px 20px 20px 20px;
             padding: 10px 10px 10px 10px;
-            
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
             img{
                 margin: auto auto auto auto;
                 height: 10vh;
@@ -73,23 +76,6 @@
                         border: 2px solid gray;
                     }
 
-                    .lookbtn {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        padding: 10px 10px 10px 10px;
-                        margin-top: 20px;
-                        background-color: rgba(128, 128, 128, 0.471);
-                        font-size: 20px;
-                        border: none;
-                        width: auto;
-                    }
-
-                    .lookbtn:hover {
-                        border: 2px solid gray;
-                        border-top: 2px solid black;
-                        border-bottom: 2px solid black;
-                    }
                 }
 
 
@@ -97,9 +83,4 @@
             }
         }
     }
-}
-
-.borderleft {
-    border-right: 2px solid black;
-    border-left: 2px solid black;
 }
