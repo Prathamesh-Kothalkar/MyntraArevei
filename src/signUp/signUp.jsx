@@ -19,7 +19,8 @@ export default function SignUp() {
                 <div className="loginBanner">
                     <div className="loginText">Signup</div>
                     <div className="card1">
-                        <img src="https://i.ibb.co/WDcpcNh/newlogo.jpg" alt="logo" />
+                        {/* <img src="https://i.ibb.co/WDcpcNh/newlogo.jpg" alt="logo" /> */}
+                        <img src="https://i.ibb.co/ZSQC38p/newlogo-removebg-preview.png" alt="logo" />
                         <form action="">
                             <div className="inputdiv">
                                 <label htmlFor="Name">
