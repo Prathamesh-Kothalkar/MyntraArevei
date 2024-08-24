@@ -21,7 +21,7 @@ export default function SignUp() {
             <>
                 <div className="loginContainer">
                     <div className="loginBanner">
-                        <div className="loginText animate__animated animate__bounce animate__delay-0.5s">Signup</div>
+                        <div className="loginText animate__animated animate__bounce animate__delay-0.5s">SIGNUP</div>
                         <div className="card1 animate__animated animate__fadeInUp">
                             {/* <img src="https://i.ibb.co/WDcpcNh/newlogo.jpg" alt="logo" /> */}
                             <img src="https://i.ibb.co/ZSQC38p/newlogo-removebg-preview.png" alt="logo" />

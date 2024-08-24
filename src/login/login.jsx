@@ -22,7 +22,7 @@ export default function Login() {
         <>
             <div className="loginContainer">
                 <div className="loginBanner">
-                    <div className="loginText animate__animated animate__bounce animate__delay-0.5s">Login</div>
+                    <div className="loginText animate__animated animate__bounce animate__delay-0.5s">LOGIN</div>
                     <div className="card1 animate__animated animate__fadeInUp">
                         {/* <img src="https://i.ibb.co/WDcpcNh/newlogo.jpg" alt="logo" /> */}
                         <img src="https://i.ibb.co/ZSQC38p/newlogo-removebg-preview.png" alt="logo" />
@@ -43,7 +43,7 @@ export default function Login() {
                                 <div className='tandc'>By continuing, i agree to the <strong>Terms and condtition</strong></div>
                             </div>
                             <div className="inputdiv animate__animated animate__flip animate__delay-1s animate__repeat-2">
-                                <button type="submit" className='submitbtn'>Continue</button>
+                                <button type="submit" className='submitbtn'>LOGIN</button>
                             </div>
                             <div className="inputdiv  animate__animated animate__zoomIn animate__delay-1s ">
                                 <div className='tandc'>Not having an account <strong><Link to="/signup">SIGN-IN</Link></strong></div>
