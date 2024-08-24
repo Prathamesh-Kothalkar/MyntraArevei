@@ -19,7 +19,7 @@ export default function SignUp() {
                 <div className="loginBanner">
                     <div className="loginText">Signup</div>
                     <div className="card1">
-                        <img src="MyntraArevei\src\assets\newlogo.jpeg" alt="logo" />
+                        <img src="https://i.ibb.co/WDcpcNh/newlogo.jpg" alt="logo" />
                         <form action="">
                             <div className="inputdiv">
                                 <label htmlFor="Name">

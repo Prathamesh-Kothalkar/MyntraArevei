@@ -18,7 +18,7 @@
 
         .loginText {
             font-size: 8vh;
-            margin: 0px auto 0px 20px;            
+            margin: 0px auto 0px 40px;            
 
             color: black;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -70,6 +70,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        padding: 10px 10px 10px 10px;
                         margin-top: 20px;
                         background-color: rgba(128, 128, 128, 0.471);
                         font-size: 20px;
