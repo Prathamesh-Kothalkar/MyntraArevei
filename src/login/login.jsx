@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef, useState } from 'react';
+import logo from "../../assets/newlogo.jpeg";
+
 import './login.css'
 export default function Login() {
     let reftype = useRef();
@@ -17,7 +19,7 @@ export default function Login() {
                 <div className="loginBanner">
                     <div className="loginText">Login</div>
                     <div className="card1">
-                        <img src="src\assets\newlogo.jpeg" alt="logo" />
+                        <img src={logo} alt="logo" />
                         <form action="">
                             <div className="inputdiv">
                                 <label htmlFor="Email">
