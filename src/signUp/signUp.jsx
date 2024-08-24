@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRef, useState } from 'react';
-import logo from "../../assets/newlogo.jpeg";
+import logo from "MyntraArevei\src\assets\newlogo.jpeg";
 
 import './signUp.css'
 export default function SignUp() {
