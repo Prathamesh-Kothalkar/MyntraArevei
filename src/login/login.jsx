@@ -17,7 +17,7 @@ export default function Login() {
                 <div className="loginBanner">
                     <div className="loginText">Login</div>
                     <div className="card1">
-                        <img src="src\assets\clogo.jpeg" alt="logo" />
+                        <img src="src\assets\newlogo.jpeg" alt="logo" />
                         <form action="">
                             <div className="inputdiv">
                                 <label htmlFor="Email">
