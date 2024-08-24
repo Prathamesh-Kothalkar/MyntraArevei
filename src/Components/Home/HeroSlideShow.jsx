@@ -1,5 +1,3 @@
-
-import { Height } from '@mui/icons-material';
 import React from 'react';
 import { Zoom, Fade, Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
@@ -23,9 +21,9 @@ const HeroSlideshow = () => {
                 <div key={index} style={{ width: "100%" }}>
                    <a href={links[index]}>
                    <img
-                                    alt="Slide Image"
-                                    src={each}
-                                    className="object-fit w-full h-44 md:h-auto"
+                        alt="Slide Image"
+                        src={each}
+                        className="object-fit w-full h-44 md:h-auto"
                                 />
                    </a>
                 </div>
