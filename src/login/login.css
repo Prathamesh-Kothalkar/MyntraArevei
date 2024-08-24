@@ -36,18 +36,24 @@
                 margin: 10px 10px 10px 10px;
                 padding: 10px 10px 10px 10px;
                 background-color: white;
-
+                border-radius: 50px;
                 .inputdiv {
                     display: flex;
                     justify-content: center;
                     margin-top: 20px;
                     display: flex;
+                    
+                    label{
+                        /* border: 2px solid lightgray; */
+                        font-weight: bold;
 
+                    }
                     .tandc{
                         font-size: smaller;
                     }
 
                     input{
+                        width: 100%;
                         border: 2px solid black;
                     }
 
