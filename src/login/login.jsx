@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRef, useState } from 'react';
-import logo from "MyntraArevei\src\assets\newlogo.jpeg";
+// import logo from "MyntraArevei\src\assets\newlogo.jpeg";
 
 import './login.css'
 export default function Login() {
@@ -19,7 +19,7 @@ export default function Login() {
                 <div className="loginBanner">
                     <div className="loginText">Login</div>
                     <div className="card1">
-                        <img src={logo} alt="logo" />
+                        <img src="MyntraArevei\src\assets\newlogo.jpeg" alt="logo" />
                         <form action="">
                             <div className="inputdiv">
                                 <label htmlFor="Email">
