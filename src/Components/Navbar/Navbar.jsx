@@ -18,9 +18,12 @@ import {
   ListItemText,
 } from "@mui/material";
 
+
 import logo from "../../assets/newlogo.jpeg";
 import gplay from "../../assets/gplay.png";
 import menuItems from "../../assets/menuItems";
+import DrawerComponent from "../DrawerComponent/DrawerComponent";
+
 
 const Navbar = () => {
   const [isHovering, setIsHovering] = useState(false);
@@ -90,7 +93,7 @@ const Navbar = () => {
                   leave="transition-opacity duration-150"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
-                  className="absolute left-[-80px] top-full w-[70vw] bg-white shadow-lg rounded-lg border-t border-gray-200"
+                  className="absolute left-[-380px] top-[50px] w-[70vw] bg-white shadow-lg rounded-lg border-t border-gray-200"
                 >
                   <div className="grid grid-cols-4 gap-6 p-6">
                     {Object.keys(menuItems[mainCategory]).map((subcategory) => (
@@ -157,65 +160,11 @@ const Navbar = () => {
       </div>
 
       {/* Drawer for Mobile Menu */}
-      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <div
-          className="w-64"
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-        >
-          <div className="p-2">
-            <img
-              src={gplay}
-              alt="Logo"
-              className="w-full h-auto object-fill mt-1 mb-1"
-            />
-          </div>
-          <List>
-            {Object.keys(menuItems).map((category) => (
-              <div key={category}>
-                <ListItem button>
-                  <Link
-                    to={`/${category.toLowerCase()}`}
-                    onClick={() => toggleDrawer(false)}
-                  >
-                    <ListItemText primary={category} />
-                  </Link>
-                </ListItem>
-                {Object.keys(menuItems[category]).map((subcategory) => (
-                  <div key={subcategory}>
-                    <ListItemText
-                      primary={subcategory}
-                      className="pl-6 font-bold"
-                    />
-                    {menuItems[category][subcategory].map((subItem) => (
-                      <ListItem
-                        button
-                        key={subItem.path}
-                        onClick={() => toggleDrawer(false)}
-                        className="pl-10"
-                      >
-                        <Link
-                          to={`/${category.toLowerCase()}/${subcategory
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")}/${subItem.path}`}
-                        >
-                          <ListItemText primary={subItem.name} />
-                        </Link>
-                      </ListItem>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            ))}
-            <ListItem button>
-              <Link to="/login" onClick={() => toggleDrawer(false)}>
-                <ListItemText primary="Login/Signup" />
-              </Link>
-            </ListItem>
-          </List>
-        </div>
-      </Drawer>
+      <DrawerComponent
+        drawerOpen={drawerOpen}
+        toggleDrawer={toggleDrawer}
+        menuItems={menuItems}
+      />
     </nav>
   );
 };
