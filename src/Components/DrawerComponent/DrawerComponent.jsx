@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Drawer, List, ListItem, ListItemText } from "@mui/material";
 
 const DrawerComponent = ({ drawerOpen, toggleDrawer, menuItems }) => {
@@ -9,6 +9,7 @@ const DrawerComponent = ({ drawerOpen, toggleDrawer, menuItems }) => {
     setSelectedCategory(category === selectedCategory ? null : category);
   };
 
+  const navigate=useNavigate();
   return (
     <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
       <div
@@ -34,6 +35,7 @@ const DrawerComponent = ({ drawerOpen, toggleDrawer, menuItems }) => {
               <ListItemText
                 primary={category}
                 className="text-lg font-semibold text-gray-800"
+                onClick={()=>{navigate(`/${category}`)}}
               />
             </ListItem>
           ))}
