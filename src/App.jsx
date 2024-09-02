@@ -9,6 +9,7 @@ import SignUp from "./signUp/signUp";
 import CategoryPage from './pages/CategoryPage.jsx'
 import Cart from './Cart/Cart.jsx'
 import axios from 'axios'
+import ProductDetails from './productDetails/productDetails.jsx'
 import { useState, useEffect } from "react";
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/:category/:subcategory" element={<CategoryPage />} />
           <Route path='/cart' element={<Cart/>}/>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/product/:id" element={<ProductDetails />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
         </Routes>
