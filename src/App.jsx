@@ -8,9 +8,23 @@ import Login from "./login/login";
 import SignUp from "./signUp/signUp";
 import CategoryPage from './pages/CategoryPage.jsx'
 import Cart from './Cart/Cart.jsx'
-
-
+import axios from 'axios'
+import { useState, useEffect } from "react";
 function App() {
+
+////////////////////////////////////
+// const [data, setData] = useState([]);
+
+//  useEffect(() => {
+//    fetchData();
+//  }, []);
+
+//    const fetchData = async () => {
+//      const response = await axios.get("");
+//      console.log("response", response);
+//      setData(response.data);
+//    };
+////////////////////////////////////
 
 
 
