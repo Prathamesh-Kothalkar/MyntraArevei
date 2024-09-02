@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Search,
   AccountCircle,
@@ -46,6 +46,8 @@ const Navbar = () => {
     }
     setDrawerOpen(open);
   };
+
+  const navigate= useNavigate();
 
   return (
     <nav className="bg-white text-black shadow-md fixed top-0 left-0 right-0 z-20">
@@ -151,7 +153,7 @@ const Navbar = () => {
               <FavoriteBorder />
             </Badge>
           </IconButton>
-          <IconButton>
+          <IconButton onClick={()=>{navigate("/cart")}}>
             <Badge badgeContent={2} color="secondary">
               <ShoppingBag />
             </Badge>
