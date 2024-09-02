@@ -42,6 +42,7 @@
         .productDetailsimg {
             display: flex;
             justify-content: center;
+            width: 40vw;
         }
 
         .productDetailsHeading3 {
@@ -117,10 +118,12 @@
     20%{
         position: relative;
         left: 0px;
+
     }
     90%{
         position: relative;
         left: 207px;
+
     }
     100%{
         position: relative;
