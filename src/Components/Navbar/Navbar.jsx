@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Search,
-  AccountCircle,
   FavoriteBorder,
   ShoppingBag,
   Menu,
+  Login,
+  Logout,
 } from "@mui/icons-material";
 
 import {
@@ -23,13 +24,15 @@ import logo from "../../assets/newlogo.jpeg";
 import gplay from "../../assets/gplay.png";
 import menuItems from "../../assets/menuItems";
 import DrawerComponent from "../DrawerComponent/DrawerComponent";
+import { UserContext } from "../../Context/UserContext";
+
 
 
 const Navbar = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-
+  const { isLogin, setIsLogin } = useContext(UserContext)
   const colors = {
     Men: "text-blue-500 border-blue-500",
     Women: "text-pink-500 border-pink-500",
@@ -47,7 +50,7 @@ const Navbar = () => {
     setDrawerOpen(open);
   };
 
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-white text-black shadow-md fixed top-0 left-0 right-0 z-20">
@@ -80,9 +83,8 @@ const Navbar = () => {
             >
               <Link
                 to={`/${mainCategory.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`px-4 text-lg font-semibold ${
-                  hoveredItem === mainCategory ? colors[mainCategory] : ""
-                }`}
+                className={`px-4 text-lg font-semibold ${hoveredItem === mainCategory ? colors[mainCategory] : ""
+                  }`}
               >
                 {mainCategory}
               </Link>
@@ -108,8 +110,8 @@ const Navbar = () => {
                               to={`/${mainCategory
                                 .toLowerCase()
                                 .replace(/\s+/g, "-")}/${subcategory
-                                .toLowerCase()
-                                .replace(/\s+/g, "-")}/${item.path}`}
+                                  .toLowerCase()
+                                  .replace(/\s+/g, "-")}/${item.path}`}
                               className="block text-grey-700  hover:font-semibold"
                             >
                               {item.name}
@@ -139,9 +141,16 @@ const Navbar = () => {
         {/* Icons */}
         <div className="flex items-center space-x-6">
           <div className="hidden md:flex">
-            <Link to="/login">
-              <AccountCircle />
-            </Link>
+            {
+              !isLogin ?
+                <Link to="/login">
+                  <Login color="success" />
+                </Link>
+                :
+                <Link onClick={() => { localStorage.clear(); setIsLogin(false) }} to="/login">
+                  <Logout color="error" />
+                </Link>
+            }
           </div>
 
           <div className="flex md:hidden">
@@ -153,7 +162,7 @@ const Navbar = () => {
               <FavoriteBorder />
             </Badge>
           </IconButton>
-          <IconButton onClick={()=>{navigate("/cart")}}>
+          <IconButton onClick={() => { navigate("/cart") }}>
             <Badge badgeContent={2} color="secondary">
               <ShoppingBag />
             </Badge>

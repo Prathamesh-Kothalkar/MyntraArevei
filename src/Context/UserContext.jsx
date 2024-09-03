@@ -1,16 +1,25 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
-export const UserContext=createContext();
+export const UserContext = createContext();
 
-export const UserContextProvider=({children})=>{
-    const [isLogin,setIsLogin]=useState(false);
+export const UserContextProvider = ({ children }) => {
+    const [isLogin, setIsLogin] = useState(false);
 
-    return(
-        <UserContext.Provider value={{isLogin,setIsLogin}}>
-            {
-                children
-            }
+    useEffect(() => {
+        checkIsLogin();
+    }, [isLogin]);
+
+    function checkIsLogin() {
+        if (!localStorage.getItem("token")) {
+            setIsLogin(false);
+        } else {
+            setIsLogin(true);
+        }
+    }
+
+    return (
+        <UserContext.Provider value={{ isLogin, setIsLogin }}>
+            {children}
         </UserContext.Provider>
-    )
+    );
 }
-

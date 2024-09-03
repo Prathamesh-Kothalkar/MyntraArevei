@@ -8,7 +8,7 @@ import Login from "./login/login";
 import SignUp from "./signUp/signUp";
 import CategoryPage from './pages/CategoryPage.jsx'
 import Cart from './Cart/Cart.jsx'
-
+import {UserContextProvider} from "./Context/UserContext.jsx"
 
 function App() {
 
@@ -16,9 +16,9 @@ function App() {
 
   return (
     <>
+    <UserContextProvider>
       <BrowserRouter>
         <Navbar />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:category" element={<CategoryPage />} />
@@ -30,6 +30,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+      </UserContextProvider>
     </>
   );
 }

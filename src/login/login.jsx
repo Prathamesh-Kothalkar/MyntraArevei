@@ -1,10 +1,12 @@
 import 'animate.css';
 import { Link } from "react-router-dom";
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import axios from 'axios';
 import './login.css'
+import {UserContext} from "../Context/UserContext"
 
 export default function Login() {
+    const {setIsLogin}=useContext(UserContext)
     let reftype = useRef();
     
     let handleClick = (e) => {
@@ -28,10 +30,18 @@ export default function Login() {
                 password
             });
 
-            console.log(response.data);
+            localStorage.setItem("token",response.data.token);
+            alert(response.data.message);
+            setIsLogin(true);
+            
             
         } catch (err) {
             console.error("Error while Login:", err.response ? err.response.data : err.message);
+            let x=err.response ? err.response.data.message : err.message;
+            console.log(x);
+            let str=`Error while Login: ${x}`;
+            alert(str)
+
         }
     };
 

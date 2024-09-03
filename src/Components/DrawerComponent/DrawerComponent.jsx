@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Drawer, List, ListItem, ListItemText } from "@mui/material";
+import { UserContext } from "../../Context/UserContext";
 
 const DrawerComponent = ({ drawerOpen, toggleDrawer, menuItems }) => {
+  const {isLogin,setIsLogin}=useContext(UserContext)
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleCategoryClick = (category) => {
@@ -72,13 +74,24 @@ const DrawerComponent = ({ drawerOpen, toggleDrawer, menuItems }) => {
 
           {/* Login/Signup */}
           <ListItem button className="hover:bg-gray-200 mt-4">
-            <Link
+            {
+              !isLogin?
+              <Link
               to="/login"
               onClick={() => toggleDrawer(false)}
               className="text-lg font-semibold text-gray-800"
             >
               <ListItemText primary="Login/Signup" />
             </Link>
+            :
+            <Link
+            onClick={() =>{localStorage.clear(); setIsLogin(false)}}
+            to="/"
+              className="text-lg font-semibold text-gray-800"
+            >
+              <ListItemText primary="Logout" />
+            </Link>
+            }
           </ListItem>
         </List>
       </div>
