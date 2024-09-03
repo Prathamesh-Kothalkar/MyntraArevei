@@ -7,10 +7,26 @@ import Contact from './contactUs/contact'
 import Login from "./login/login";
 import SignUp from "./signUp/signUp";
 import CategoryPage from './pages/CategoryPage.jsx'
-import Cart from './Cart/Cart.jsx'
 import {UserContextProvider} from "./Context/UserContext.jsx"
+import Cart from './Cart/Cart.jsx'
+import ProductDetails from './productDetails/productDetails.jsx'
+
 
 function App() {
+
+////////////////////////////////////
+// const [data, setData] = useState([]);
+
+//  useEffect(() => {
+//    fetchData();
+//  }, []);
+
+//    const fetchData = async () => {
+//      const response = await axios.get("");
+//      console.log("response", response);
+//      setData(response.data);
+//    };
+////////////////////////////////////
 
 
 
@@ -25,6 +41,7 @@ function App() {
           <Route path="/:category/:subcategory" element={<CategoryPage />} />
           <Route path='/cart' element={<Cart/>}/>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/product/:id" element={<ProductDetails />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
         </Routes>
