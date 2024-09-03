@@ -1,23 +1,18 @@
 import axios from 'axios';
 import 'animate.css';
-import { Height } from '@mui/icons-material'
-import './ProductDetails.css'
-import { useState, useEffect } from 'react';
-export default function ProductDetails() {
+import './ProductDetails.css';
+import { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { UserContext } from '../Context/UserContext';
 
+export default function ProductDetails() {
     const [alertMessage, setAlertMessage] = useState('');
     const [isAlertVisible, setIsAlertVisible] = useState(false);
-    const [data, setData] = useState({
-        name: "shirt",
-        description: "a blue check shirt",
-        price: 2000,
-        category: "men",
-        brand: "zudio",
-        sizes: "L",
-        colors: "blue",
-        images: "https://images.unsplash.com/photo-1485218126466-34e6392ec754?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        stock: 5
-    });
+    const [data, setData] = useState(null);
+    const { id } = useParams();
+    const {isLogin}=useContext(UserContext);
+
     const handleClick = () => {
         setAlertMessage('Added to Cart');
         setIsAlertVisible(true);
@@ -29,7 +24,7 @@ export default function ProductDetails() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://api.example.com/data');
+                const response = await axios.get(`http://localhost:3000/api/v1/product/${id}`);
                 setData(response.data);
             } catch (error) {
                 console.log(error);
@@ -37,69 +32,45 @@ export default function ProductDetails() {
         };
 
         fetchData();
-    }, []);
+    }, [id]);
+
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
     return (
-        <div className="productDetailsContainer">
-            <div className="productDetailsCard">
-                <div className="productDetailsHeading1">
-                    {data.name.toLocaleUpperCase()}
+        <>
+            <div className="grid grid-cols-1 md:grid-cols-2 mt-24 p-4">
+                <div className="">
+                    <img src={data.images[0]} alt={data.name} className="w-full h-96 object-cover rounded-lg" />
                 </div>
-                <hr className='productDetailshr' />
-                <div className="productDetailsHeading2">
-                    {data.category.toLocaleUpperCase()}
+                <div className="">
+                    <h1 className="text-2xl font-bold mb-4">{data.name.toUpperCase()}</h1>
+                    <p className="text-xl mb-2"><strong>Category:</strong> {data.category.toUpperCase()}</p>
+                    <p className="text-lg mb-4"><strong>Description:</strong> {data.description}</p>
+                    <p className="text-lg mb-2"><strong>Brand:</strong> {data.brand}</p>
+                    <p className="text-lg mb-2"><strong>Sizes:</strong> {data.sizes.join(', ')}</p>
+                    <p className="text-lg mb-2"><strong>Colors:</strong> {data.colors.join(', ')}</p>
+                    <p className="text-lg mb-4"><strong>Price:</strong> ₹{data.price}</p>
+                    <p className="text-lg mb-4"><strong>Stock:</strong> {data.stock > 0 ? `${data.stock} in stock` : 'Out of stock'}</p>
+                    {
+                        !isLogin?
+                        <Button variant='contained' color='success' onClick={()=>{alert("Login First")}} className="">Add to Cart</Button>
+                        :
+                        <Button variant='contained' color='success' onClick={handleClick} className="">Add to Cart</Button>
+                    }
                 </div>
-                <hr className='productDetailshr' />
-                <div className="productDetailsimg">
-                    <img src={data.images} alt="product pic" style={{ width: '80%' }} />
-                </div>
-                <hr className='productDetailshr' />
-
-                <ul>
-                    <li>
-                        <div className="productDetailsHeading3">
-                        Description:&nbsp;<i><b>{data.description}</b></i>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="productDetailsHeading3">
-                        Brand:&nbsp;<i><b>{data.brand}</b></i>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="productDetailsHeading3">
-                        Size:&nbsp;<i><b>{data.sizes}</b></i>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="productDetailsHeading3">
-                        Colours:&nbsp;<i><b>{data.colors}</b></i>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="productDetailsHeading3">
-                        Price:&nbsp;₹&nbsp;<i><b>{data.price}</b></i>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="productDetailsHeading3">
-                        Stock:&nbsp;<i><b>{data.stock}</b></i>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div className="productDetailsButtons">
-                <div className='productDetailsButton' onClick={handleClick}>Add to Cart</div>
             </div>
 
-            {/* //alert */}
             {isAlertVisible && (
-                <div className="alertproductDetailsContainer">
-                    <div className="alertproductDetailsCard">
-                        <div className="alertMessage showlater"><i class="fa-solid fa-plane"></i></div>
-                        <div className="alertMessage showfirst">{alertMessage}</div>
+                <div className="alert-container">
+                    <div className="alert-card">
+                        <div className="alert-message">
+                            <i className="fa-solid fa-check-circle"></i> {alertMessage}
+                        </div>
                     </div>
                 </div>
             )}
-        </div>
-    )
-};
+        </>
+    );
+}

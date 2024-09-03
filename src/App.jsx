@@ -14,20 +14,6 @@ import ProductDetails from './productDetails/productDetails.jsx'
 
 function App() {
 
-////////////////////////////////////
-// const [data, setData] = useState([]);
-
-//  useEffect(() => {
-//    fetchData();
-//  }, []);
-
-//    const fetchData = async () => {
-//      const response = await axios.get("");
-//      console.log("response", response);
-//      setData(response.data);
-//    };
-////////////////////////////////////
-
 
 
   return (
