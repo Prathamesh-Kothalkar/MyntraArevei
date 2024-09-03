@@ -10,6 +10,7 @@ import CategoryPage from './pages/CategoryPage.jsx'
 import {UserContextProvider} from "./Context/UserContext.jsx"
 import Cart from './Cart/Cart.jsx'
 import ProductDetails from './productDetails/productDetails.jsx'
+import UserDetails from './User/UserDetails.jsx'
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/user" element={<UserDetails />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
