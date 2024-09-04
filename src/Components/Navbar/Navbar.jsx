@@ -54,7 +54,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white text-black shadow-md fixed top-0 left-0 right-0 z-20">
-      <div className="container mx-auto flex items-center justify-between px-2 py-3">
+      <div className="container mx-auto flex items-center justify-between px-2 md:px-8 py-3">
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <IconButton onClick={toggleDrawer(true)}>
@@ -63,11 +63,11 @@ const Navbar = () => {
         </div>
         {/* Logo */}
         <Link to="/">
-          <img src={logo} alt="Logo" className="object-fit" />
+          <img src={logo} alt="Logo" className="object-fit h-10" />
         </Link>
         {/* Desktop Menu */}
 
-        <div className="hidden md:flex space-x-8 text-sm">
+        <div className="hidden md:flex  text-sm px-7">
           {Object.keys(menuItems).map((mainCategory) => (
             <div
               key={mainCategory}
@@ -83,7 +83,7 @@ const Navbar = () => {
             >
               <Link
                 to={`/${mainCategory.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`px-4 text-lg font-semibold ${hoveredItem === mainCategory ? colors[mainCategory] : ""
+                className={`px-4 text-sm font-semibold ${hoveredItem === mainCategory ? colors[mainCategory] : ""
                   }`}
               >
                 {mainCategory}
@@ -97,7 +97,7 @@ const Navbar = () => {
                   leave="transition-opacity duration-150"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
-                  className="absolute left-[-380px] top-[50px] w-[70vw] bg-white shadow-lg rounded-lg border-t border-gray-200"
+                  className="absolute left-0 top-[50px] w-[70vw] bg-white shadow-lg rounded-lg border-t border-gray-200"
                 >
                   <div className="grid grid-cols-4 gap-6 p-6">
                     {Object.keys(menuItems[mainCategory]).map((subcategory) => (

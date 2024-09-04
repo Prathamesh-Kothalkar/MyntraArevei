@@ -2,7 +2,7 @@ import 'animate.css';
 import { Link } from "react-router-dom";
 import { useContext, useRef, useState } from 'react';
 import axios from 'axios';
-import './login.css'
+// import './login.css'
 import {UserContext} from "../Context/UserContext"
 
 export default function Login() {

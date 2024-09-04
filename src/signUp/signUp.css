@@ -1,26 +1,34 @@
 .loginContainer {
     /* height: 100vh; */
-    background-color: rgb(255, 204, 211);
+    background-color: rgb(166, 2, 187);
     display: flex;
     margin: 65px 0px 10px 0px;
     margin-top: 10px !important;
-
+    min-height: 100vh;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    margin-top:50px;
+    
 
 
     .loginBanner {
         /* position: absolute; */
+        background-color: rgba(255, 255, 255, 0.687);
+        border-radius: 20px;
         display: block;
         /* height: 80vh; */
         top: 10vh;
         left: 10vw;
         margin-top: 80px;
+        margin: 40px auto;
+        width:100%;
+        max-width: 40rem;
 
 
         .loginText {
-            font-size: 8vh;
-            margin: 15px auto 0px 100px;            
+            font-size: 6vh;
+            text-align: center;          
             color: black;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             /* animation: bounce;
@@ -28,56 +36,56 @@
         }
 
         .card1 {
-            background-color: rgba(255, 255, 255, 0.687);
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            padding: 10px 10px 10px 10px;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            padding:  20px 0px;
             img{
                 margin: auto auto auto auto;
-                height: 10vh;
+                height: 6vh;
                 width: auto;
             }
             form {
                 display: block;
                 margin: 10px 10px 10px 10px;
-                padding: 10px 10px 10px 10px;
+                padding: 13px;
                 background-color: white;
-                border-radius: 50px;
+                border-bottom-left-radius:30px;
+                border-bottom-right-radius:30px;
                 .inputdiv {
+                text-align: left;
+
                     display: flex;
-                    justify-content: center;
+                    flex-direction: column;
+                    justify-content: end;
                     margin-top: 20px;
                     display: flex;
-                    
-                    label{
-                        /* border: 2px solid lightgray; */
-                        font-weight: bold;
-                    }
-
+                    width: 100%;
                     .tandc{
                         font-size: smaller;
+                        text-align: center;
                     }
 
                     input{
                         width: 100%;
-                        border: 2px solid black;
+                        padding: 10px;
+                        border-color: gray;
+                        border-width: 2px;
+                        margin-top: 2px;
+                    }
+                    input:focus{
+                        border-color: rgb(217, 83, 235);
                     }
 
                     .submitbtn {
                         margin-top: 20px;
                         padding: 10px 10px 10px 10px;
-                        background-color: rgba(128, 128, 128, 0.217);
+                        background-color: rgb(197, 22, 220);
                         font-size: 20px;
-                        border: none;
+                        width: 100%;
+                        border-radius: 12px;
                     }
 
                     .submitbtn:hover {
-                        border: 2px solid gray;
+                        background-color: rgb(166, 2, 187);
+                        color: white;
                     }
 
                 }

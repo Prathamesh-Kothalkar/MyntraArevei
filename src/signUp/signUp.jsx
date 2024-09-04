@@ -29,31 +29,36 @@ export default function SignUp() {
                                 <div className="inputdiv">
                                     <label htmlFor="Name" className='animate__animated animate__fadeInLeft  animate__delay-1s'>
                                         Name: &nbsp;&nbsp;&nbsp;
-                                        <input type="text" name="Name" id="Name" placeholder='Full Name' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                     </label>
+
+                                        <input type="text" name="Name" id="Name" placeholder='Full Name' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                 </div>
                                 <div className="inputdiv">
                                     <label htmlFor="phone" className='animate__animated animate__fadeInLeft  animate__delay-1s'>
                                         Phone: &nbsp;&nbsp;&nbsp;
-                                        <input type="text" name="phone" id="phone" placeholder='+91' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                     </label>
+
+                                        <input type="text" name="phone" id="phone" placeholder='+91' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                 </div>
                                 <div className="inputdiv">
                                     <label htmlFor="Email" className='animate__animated animate__fadeInLeft  animate__delay-1s'>
                                         Email: &nbsp;&nbsp;&nbsp;
-                                        <input type="email" name="Email" id="Email" placeholder='abc@xxx.xom' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                     </label>
+
+                                        <input type="email" name="Email" id="Email" placeholder='abc@xxx.xom' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                 </div>
                                 <div className="inputdiv">
                                     <label htmlFor="pass" className='animate__animated animate__fadeInLeft  animate__delay-1s'>
+                                        
                                         Password: &nbsp;&nbsp;&nbsp;
+                                        
                                         <i class="fa-solid fa-eye-slash" onClick={handleClick}></i>
+                                        </label>
                                         <input type="password" name="pass" id="pass" ref={reftype} placeholder='****' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
-                                    </label>
                                 </div>
                                 <div className="inputdiv  animate__animated animate__zoomIn animate__delay-1s ">
-                                    <div className='tandc'>By continuing, i agree to the <strong>Terms and condtition</strong></div>
                                 </div>
+                                    <div className='tandc'>By continuing, i agree to the <strong>Terms and condtition</strong></div>
                                 <div className="inputdiv animate__animated animate__flip animate__delay-1s animate__repeat-2">
                                     <button type="submit" className='submitbtn'>Continue</button>
                                 </div>
