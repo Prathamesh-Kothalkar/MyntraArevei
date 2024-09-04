@@ -13,12 +13,28 @@ export default function ProductDetails() {
     const { id } = useParams();
     const {isLogin}=useContext(UserContext);
 
-    const handleClick = () => {
-        setAlertMessage('Added to Cart');
-        setIsAlertVisible(true);
-        setTimeout(() => {
-            setIsAlertVisible(false);
-        }, 3000);
+    const handleClick = async (productId,img_src,name, price, quantity) => {
+        
+        //api for add to cart
+        try{
+            setIsAlertVisible(true);
+            const response = await axios.post("http://localhost:3000/api/v1/cart/add", 
+                { productId, img_src, name, price, quantity },
+                {
+                    headers:{
+                        Authorization:"Bearer "+localStorage.getItem("token")
+                    }
+                }
+            );
+         console.log(response.data);
+         
+            setAlertMessage('Added to Cart');
+        }
+        catch(err){
+            console.log(err);
+            
+        }
+       
     };
 
     useEffect(() => {
@@ -57,7 +73,7 @@ export default function ProductDetails() {
                         !isLogin?
                         <Button variant='contained' color='success' onClick={()=>{alert("Login First")}} className="">Add to Cart</Button>
                         :
-                        <Button variant='contained' color='success' onClick={handleClick} className="">Add to Cart</Button>
+                        <Button variant='contained' color='success' onClick={()=>{handleClick(data._id,data.images[0],data.name,data.price,1)}} className="">Add to Cart</Button>
                     }
                 </div>
             </div>
