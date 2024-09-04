@@ -59,7 +59,7 @@ export default function SignUp() {
                                 <div className="inputdiv  animate__animated animate__zoomIn animate__delay-1s ">
                                 </div>
                                     <div className='tandc'>By continuing, i agree to the <strong>Terms and condtition</strong></div>
-                                <div className="inputdiv animate__animated animate__flip animate__delay-1s animate__repeat-2">
+                                <div className="inputdiv animate__animated animate__backInUp animate__delay-2s animate__repeat-1">
                                     <button type="submit" className='submitbtn'>Continue</button>
                                 </div>
                                 <div className="inputdiv">

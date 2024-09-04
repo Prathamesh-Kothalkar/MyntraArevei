@@ -86,7 +86,7 @@ export default function Login() {
                                 By continuing, I agree to the <strong>Terms and Conditions</strong>
                             </div>
                         </div>
-                        <div className="inputdiv animate__animated animate__flip animate__delay-1s animate__repeat-2">
+                        <div className="inputdiv animate__animated animate__backInUp animate__delay-2s animate__repeat-1">
                             <button type="submit" className='submitbtn'>LOGIN</button>
                         </div>
                         <div className="inputdiv animate__animated animate__zoomIn animate__delay-1s">
