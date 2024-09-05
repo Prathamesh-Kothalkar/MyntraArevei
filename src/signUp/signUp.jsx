@@ -1,12 +1,13 @@
 import 'animate.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from 'react';
 // import logo from "MyntraArevei\src\assets\newlogo.jpeg";
-
 import './signUp.css'
+import axios from 'axios';
 export default function SignUp() {
     let reftype = useRef();
-    let handleClick = (e) => {
+    const navigate  = useNavigate();
+    let handleEyeClick = (e) => {
         console.log(e.target.className);
         // ref.current.style.backgroundColor = "black";
         if (reftype.current.type == "text" && reftype.current.value != "") {
@@ -16,7 +17,27 @@ export default function SignUp() {
             reftype.current.type = "text";
             e.target.className = "fa-solid fa-eye";
         }
-        };
+    };
+
+    const [SignForm,setSignUpForm] = useState({name:'',email:'',phone:'',password:''});
+    const handleChangeSignUp=(e)=>{
+        setSignUpForm({...SignForm,[e.target.name]:e.target.value})
+    }
+    const handleSubmitSignup= async(e)=>{
+            e.preventDefault();
+            try {
+                const response = await axios.post("http://localhost:3000/api/v1/user/signup", SignForm);
+                alert(response.data.message);
+                navigate('/login');
+            } catch (err) {
+                console.error("Error while Login:", err.response ? err.response.data : err.message);
+                let x=err.response ? err.response.data.message : err.message;
+                console.log(x);
+                let str=`Error while Signup: ${x}`;
+                alert(str)
+    
+            }
+    }
         return (
             <>
                 <div className="loginContainer">
@@ -31,36 +52,36 @@ export default function SignUp() {
                                         Name: &nbsp;&nbsp;&nbsp;
                                     </label>
 
-                                        <input type="text" name="Name" id="Name" placeholder='Full Name' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
+                                        <input type="text" name="name" value={SignForm.name} onChange={handleChangeSignUp} id="Name" placeholder='Full Name' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                 </div>
                                 <div className="inputdiv">
                                     <label htmlFor="phone" className='animate__animated animate__fadeInLeft  animate__delay-1s'>
                                         Phone: &nbsp;&nbsp;&nbsp;
                                     </label>
 
-                                        <input type="text" name="phone" id="phone" placeholder='+91' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
+                                        <input type="text" name="phone" value={SignForm.phone} onChange={handleChangeSignUp} id="phone" placeholder='+91' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                 </div>
                                 <div className="inputdiv">
                                     <label htmlFor="Email" className='animate__animated animate__fadeInLeft  animate__delay-1s'>
                                         Email: &nbsp;&nbsp;&nbsp;
                                     </label>
 
-                                        <input type="email" name="Email" id="Email" placeholder='abc@xxx.xom' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
+                                        <input type="email" name="email" value={SignForm.email} onChange={handleChangeSignUp} id="Email" placeholder='abc@xxx.xom' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                 </div>
                                 <div className="inputdiv">
                                     <label htmlFor="pass" className='animate__animated animate__fadeInLeft  animate__delay-1s'>
                                         
                                         Password: &nbsp;&nbsp;&nbsp;
                                         
-                                        <i class="fa-solid fa-eye-slash" onClick={handleClick}></i>
+                                        <i class="fa-solid fa-eye-slash" onClick={handleEyeClick}></i>
                                         </label>
-                                        <input type="password" name="pass" id="pass" ref={reftype} placeholder='****' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
+                                        <input type="password" name="password" value={SignForm.password}  onChange={handleChangeSignUp} id="pass" ref={reftype} placeholder='****' className='animate__animated animate__fadeInRightBig  animate__delay-1s' />
                                 </div>
                                 <div className="inputdiv  animate__animated animate__zoomIn animate__delay-1s ">
                                 </div>
                                     <div className='tandc'>By continuing, i agree to the <strong>Terms and condtition</strong></div>
                                 <div className="inputdiv animate__animated animate__backInUp animate__delay-2s animate__repeat-1">
-                                    <button type="submit" className='submitbtn'>Continue</button>
+                                    <button type="submit" className='submitbtn' onClick={handleSubmitSignup}>Continue</button>
                                 </div>
                                 <div className="inputdiv">
                                     <div className='tandc animate__animated animate__zoomIn animate__delay-1s'>Go to <strong><Link to="/">Home</Link></strong></div>
