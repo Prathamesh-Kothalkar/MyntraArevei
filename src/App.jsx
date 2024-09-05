@@ -11,6 +11,7 @@ import {UserContextProvider} from "./Context/UserContext.jsx"
 import Cart from './Cart/Cart.jsx'
 import ProductDetails from './productDetails/productDetails.jsx'
 import UserDetails from './User/UserDetails.jsx'
+import BuyOrder from './Order/BuyOrder.jsx'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/user" element={<UserDetails />}></Route>
+          <Route path='/details' element={<BuyOrder/>}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -3,6 +3,7 @@ import { Button } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from "../Context/UserContext";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CartItem = ({ item, onRemove }) => {
     return (
@@ -28,7 +29,7 @@ const Cart = () => {
     const { isLogin } = useContext(UserContext);
     const [items, setItems] = useState([]);
     const [error, setError] = useState(null);
-
+    const navigate = useNavigate();
     const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
 
     useEffect(() => {
@@ -103,7 +104,7 @@ const Cart = () => {
                                     </div>
                                 </div>
                                 <div className="mt-6 text-center">
-                                    <Button variant="contained" color="success" size="large">
+                                    <Button variant="contained" color="success" size="large" onClick={()=>{navigate("/details")}}>
                                         Proceed to Checkout
                                     </Button>
                                 </div>
