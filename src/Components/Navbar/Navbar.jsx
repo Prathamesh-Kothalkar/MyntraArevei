@@ -9,6 +9,7 @@ import {
   Login,
   Logout,
 } from "@mui/icons-material";
+import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 
 import {
   Badge,
@@ -157,10 +158,9 @@ const Navbar = () => {
             <Search />
           </div>
 
-          <IconButton>
-            <Badge badgeContent={4} color="secondary">
-              <FavoriteBorder />
-            </Badge>
+          <IconButton onClick={() => { navigate("/user") }}>
+              {/* <FavoriteBorder /> */}
+              <AccountCircleTwoToneIcon></AccountCircleTwoToneIcon>
           </IconButton>
           <IconButton onClick={() => { navigate("/cart") }}>
             <Badge badgeContent={2} color="secondary">

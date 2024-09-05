@@ -5,12 +5,13 @@ import "./UserDetails.css";
 import 'animate.css';
 
 export default function UserDetails() {
+    const [addAdress, setAddAdress] = useState(false);
     const [renderCount, setRenderCount] = useState(0);
     useEffect(() => {
-        if (renderCount<2) {
+        if (renderCount < 2) {
             setRenderCount(renderCount + 1);
         }
-      }, [renderCount]);
+    }, [renderCount]);
 
     const { isLogin } = useContext(UserContext);
 
@@ -27,36 +28,40 @@ export default function UserDetails() {
     const [errorUser, setErrorUser] = useState(null);
     const [errorAddress, setErrorAddress] = useState(null);
 
-    // const [street, setStreet] = useState('');
-    // const [city, setCity] = useState('');
-    // const [state, setState] = useState('');
-    // const [postalCode, setPostalCode] = useState('');
-    // const [country, setCountry] = useState('');
-    // const [landmark, setLandmark] = useState('');
-    // const [apartmentNumber, setApartmentNumber] = useState('');
-    // const [error, setError] = useState(null);
-    // const [success, setSuccess] = useState(null);
+    const [street, setStreet] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [postalCode, setPostalCode] = useState('');
+    const [country, setCountry] = useState('');
+    const [landmark, setLandmark] = useState('');
+    const [apartmentNumber, setApartmentNumber] = useState('');
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setError(null);
-    //     setSuccess(null);
-    //     try {
-    //         const response = await axios.post(`http://localhost:3000/api/v1/user/address`, {
-    //             street,
-    //             city,
-    //             state,
-    //             postalCode,
-    //             country,
-    //             landmark,
-    //             apartmentNumber,
-    //         });
-    //         setSuccess(response.data.message);
-    //     } catch (err) {
-    //         setError(err.message);
-    //     }
-    // };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(null);
+        setSuccess(null);
+        try {
+            const response = await axios.post(`http://localhost:3000/api/v1/user/address`, {
+                street,
+                city,
+                state,
+                postalCode,
+                country,
+                landmark,
+                apartmentNumber,
+            }, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            });
+            setSuccess(response.data.message);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -68,7 +73,7 @@ export default function UserDetails() {
                             Authorization: "Bearer " + localStorage.getItem("token")
                         }
                     });
-                    const udata= await response.data;
+                    const udata = await response.data;
                     setUser(udata);
                     console.log(response.data)
                 }
@@ -77,7 +82,7 @@ export default function UserDetails() {
             }
         };
         fetchUserProfile();
-    },[renderCount]);
+    }, [renderCount]);
 
     useEffect(() => {
         const fetchAddresses = async () => {
@@ -89,7 +94,7 @@ export default function UserDetails() {
                             Authorization: "Bearer " + localStorage.getItem("token")
                         }
                     });
-                    const Adata= await response.data;
+                    const Adata = await response.data;
                     setAddresses(Adata.address);
                     console.log(response.data);
                 }
@@ -98,8 +103,8 @@ export default function UserDetails() {
             }
         };
         fetchAddresses();
-    },[renderCount]);
-    
+    }, [renderCount]);
+
     //convert time format
     function convertUTCToLocalTime(utcTime) {
         const date = new Date(utcTime);
@@ -108,18 +113,18 @@ export default function UserDetails() {
         const day = date.getDate();
         const hours = date.getHours();
         const minutes = date.getMinutes();
-            const seconds = date.getSeconds();
-    
-            const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-            const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            return `${formattedDate} ${formattedTime}`;
-        }
-    
-        
-            if (errorUser || errorAddress) return <p>Error: {errorUser} AND {errorAddress}</p>;
+        const seconds = date.getSeconds();
 
-           return renderCount <= 2 ? (
-                <div>
+        const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        return `${formattedDate} ${formattedTime}`;
+    }
+
+
+    if (errorUser || errorAddress) return <p>Error: {errorUser} AND {errorAddress}</p>;
+
+    return renderCount <= 2 ? (
+        <div>
             {
                 !isLogin ?
                     <div className=" containerUserDetails">
@@ -128,6 +133,8 @@ export default function UserDetails() {
                     :
                     <div className='containerUserDetails'>
                         <div className="card1UserDetails">
+                            <button className="setaddressButton" onClick={()=>setAddAdress(!addAdress)}>Add Address</button>
+                            <br />
                             <i class="fa-solid fa-user"></i>
                         </div>
                         <div className="card1UserDetails">
@@ -143,17 +150,19 @@ export default function UserDetails() {
                             <div className='detailheadingUserDetails animate__animated animate__lightSpeedInRight animate__delay-0s'>Address</div>
                             {addresses.length > 0 ? (
                                 <ul>
-                                    {addresses.map((address, index) => (
-                                        <li key={index}>
-                                            <div className='detailAddressUserDetails1  animate__animated animate__backInUp animate__delay-1s'><strong>Apartment Number: </strong>{address.apartmentNumber}</div>
-                                            <div className='detailAddressUserDetails2  animate__animated animate__backInUp animate__delay-2s'><strong>Street: </strong>{address.street}</div>
-                                            <div className='detailAddressUserDetails3  animate__animated animate__backInUp animate__delay-3s'><strong>City: </strong>{address.city}</div>
-                                            <div className='detailAddressUserDetails4  animate__animated animate__backInUp animate__delay-4s'><strong>Landmark: </strong>{address.landmark}</div>
-                                            <div className='detailAddressUserDetails5  animate__animated animate__backInUp animate__delay-5s'><strong>State: </strong>{address.state}</div>
-                                            <div className='detailAddressUserDetails6  animate__animated animate__backInUp animate__delay-5s'><strong>Country: </strong>{address.country}</div>
-                                            <div className='detailAddressUserDetails7  animate__animated animate__backInUp animate__delay-5s'><strong>Postal Code: </strong>{address.postalCode}</div>
-                                        </li>
-                                    ))}
+                                    <div className="adresscards">
+                                        {addresses.map((address, index) => (
+                                            <div key={index}>
+                                                <div className='detailAddressUserDetails1  animate__animated animate__backInUp animate__delay-1s'><strong>Apartment Number: </strong>{address.apartmentNumber}</div>
+                                                <div className='detailAddressUserDetails2  animate__animated animate__backInUp animate__delay-2s'><strong>Street: </strong>{address.street}</div>
+                                                <div className='detailAddressUserDetails3  animate__animated animate__backInUp animate__delay-3s'><strong>City: </strong>{address.city}</div>
+                                                <div className='detailAddressUserDetails4  animate__animated animate__backInUp animate__delay-4s'><strong>Landmark: </strong>{address.landmark}</div>
+                                                <div className='detailAddressUserDetails5  animate__animated animate__backInUp animate__delay-5s'><strong>State: </strong>{address.state}</div>
+                                                <div className='detailAddressUserDetails6  animate__animated animate__backInUp animate__delay-5s'><strong>Country: </strong>{address.country}</div>
+                                                <div className='detailAddressUserDetails7  animate__animated animate__backInUp animate__delay-5s'><strong>Postal Code: </strong>{address.postalCode}</div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </ul>
                             ) : (
                                 <div className='detailAddressUserDetails1  animate__animated animate__wobble animate__delay-1s'>No addresses stored</div>
@@ -161,24 +170,35 @@ export default function UserDetails() {
                         </div>
                         <hr />
                         <div>
-                            {/* <h2>Add Address</h2>
-                            {success && <p className="success">{success}</p>}
-                            {error && <p className="error">{error}</p>}
+                            { addAdress ?
+                            <div className='adresscontainer'>
+                                <div className="AdressHeading">
+                                    <div>
+                                        ADD ADDRESS
+                                    </div>
+                                    <div>
+                                    <i class="fa-solid fa-xmark" onClick={()=>setAddAdress(!addAdress)}></i>
+                                    </div>
+                                </div>
+                                {success && <p className="success">{success}</p>}
+                                {error && <p className="error">{error}</p>}
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="street">Street:</label>
+                                    <label className="userDetailsLabel" htmlFor="street">Street:</label>
+                                    <br></br>
                                     <input
                                         type="text"
                                         id="street"
                                         value={street}
                                         onChange={(e) => setStreet(e.target.value)}
                                         required
-                                        className="form-control"
+                                        className="form-control inputclass"
 
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="city">City:</label>
+                                    <label className="userDetailsLabel" htmlFor="city">City:</label>
+                                    <br></br>
                                     <input
                                         type="text"
                                         id="city"
@@ -186,11 +206,12 @@ export default function UserDetails() {
                                         onChange={(e) => setCity(e.target.value)}
 
                                         required
-                                        className="form-control"
+                                        className="form-control inputclass"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="state">State:</label>
+                                    <label className="userDetailsLabel" htmlFor="state">State:</label>
+                                    <br></br>
                                     <input
                                         type="text"
                                         id="state"
@@ -198,11 +219,12 @@ export default function UserDetails() {
                                         onChange={(e) => setState(e.target.value)}
                                         required
 
-                                        className="form-control"
+                                        className="form-control inputclass"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="postalCode">Postal Code:</label>
+                                    <label className="userDetailsLabel" htmlFor="postalCode">Postal Code:</label>
+                                    <br></br>
                                     <input
                                         type="text"
                                         id="postalCode"
@@ -211,11 +233,12 @@ export default function UserDetails() {
 
                                         required
 
-                                        className="form-control"
+                                        className="form-control inputclass"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="country">Country:</label>
+                                    <label className="userDetailsLabel" htmlFor="country">Country:</label>
+                                    <br></br>
                                     <input
                                         type="text"
                                         id="country"
@@ -223,35 +246,41 @@ export default function UserDetails() {
                                         onChange={(e) => setCountry(e.target.value)}
 
                                         required
-                                        className="form-control"
+                                        className="form-control inputclass"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="landmark">Landmark (Optional):</label>
+                                    <label className="userDetailsLabel" htmlFor="landmark">Landmark (Optional):</label>
+                                    <br></br>
                                     <input
                                         type="text"
                                         id="landmark"
                                         value={landmark}
                                         onChange={(e) => setLandmark(e.target.value)}
 
-                                        className="form-control"
+                                        className="form-control inputclass"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="apartmentNumber">Apartment Number (Optional):</label>
+                                    <label className="userDetailsLabel" htmlFor="apartmentNumber">Apartment Number (Optional):</label>
+                                    <br></br>
                                     <input
                                         type="text"
                                         id="apartmentNumber"
                                         value={apartmentNumber}
                                         onChange={(e) => setApartmentNumber(e.target.value)}
-                                        className="form-control"
+                                        className="form-control inputclass"
                                     />
                                 </div>
-                                <button type="submit" className="btn btn-primary">Add Address</button>
-                            </form> */}
+                                <button type="submit" className="btn btn-primary userDetailsButton">Add Address</button>
+                            </form>
+                            </div>
+                            :
+                            <div></div>
+                            }
                         </div>
                     </div>
             }
-                </div>
-              ) : null;
-            }
+        </div>
+    ) : null;
+}
