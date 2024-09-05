@@ -1,5 +1,5 @@
 import 'animate.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useRef, useState } from 'react';
 import axios from 'axios';
 // import './login.css'
@@ -8,6 +8,8 @@ import {UserContext} from "../Context/UserContext"
 export default function Login() {
     const {setIsLogin}=useContext(UserContext)
     let reftype = useRef();
+    const navigate  = useNavigate();
+
     
     let handleClick = (e) => {
         if (reftype.current.type === "text" && reftype.current.value !== "") {
@@ -33,8 +35,7 @@ export default function Login() {
             localStorage.setItem("token",response.data.token);
             alert(response.data.message);
             setIsLogin(true);
-            
-            
+            navigate('/');
         } catch (err) {
             console.error("Error while Login:", err.response ? err.response.data : err.message);
             let x=err.response ? err.response.data.message : err.message;
