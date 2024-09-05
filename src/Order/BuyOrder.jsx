@@ -10,13 +10,33 @@ export default function BuyOrder() {
   const [name,setName]=useState("");
   const [phone,setPhoneNumber]=useState(0);
 
-  const handleSubmit = () => {
-    if (orderAddress === "" || name=== "" || phone==0) {
-      alert("Please select an address");
+  const handleSubmit = async () => {
+    if (orderAddress === "" || name === "" || phone === 0) {
+      alert("Please fill in all fields");
       return;
     }
-    alert(`Name: ${name}, Mobile ${phone}, Address: ${orderAddress}, Payment: Rs.${payment}, Mode: ${paymentMode}`);
+  
+    const placeTo = `Name: ${name}, Mobile: ${phone}, Address: ${orderAddress}, Payment: Rs.${payment}, Mode: ${paymentMode}`;
+    
+    const orderData = {
+      paymentId: "RANDOM_PAYMENT_ID", 
+      address: placeTo,
+      amount:payment
+    };
+  
+    try {
+      const response = await axios.post("http://localhost:3000/api/v1/orders/", orderData, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+  
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
+  
 
   useEffect(() => {
     const fetchAddress = async () => {
