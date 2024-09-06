@@ -8,6 +8,7 @@ import {
   Menu,
   Login,
   Logout,
+  AddBox,
 } from "@mui/icons-material";
 
 import {
@@ -161,6 +162,9 @@ const Navbar = () => {
             <Badge badgeContent={4} color="secondary">
               <FavoriteBorder />
             </Badge>
+          </IconButton>
+          <IconButton onClick={()=>navigate('/addProduct')}>
+              <AddBox />
           </IconButton>
           <IconButton onClick={() => { navigate("/cart") }}>
             <Badge badgeContent={2} color="secondary">

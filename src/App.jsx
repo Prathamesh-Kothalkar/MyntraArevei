@@ -12,6 +12,7 @@ import Cart from './Cart/Cart.jsx'
 import ProductDetails from './productDetails/productDetails.jsx'
 import UserDetails from './User/UserDetails.jsx'
 import BuyOrder from './Order/BuyOrder.jsx'
+import AddProduct from './pages/addProduct.jsx'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/user" element={<UserDetails />}></Route>
           <Route path='/details' element={<BuyOrder/>}></Route>
+          <Route path='/addProduct' element={<AddProduct/>}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
