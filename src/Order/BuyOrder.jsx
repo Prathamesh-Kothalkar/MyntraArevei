@@ -1,6 +1,7 @@
-import { Button, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function BuyOrder() {
   const [address, setAddress] = useState([]);
@@ -9,13 +10,15 @@ export default function BuyOrder() {
   const [paymentMode, setPaymentMode] = useState("Online");
   const [name, setName] = useState("");
   const [phone, setPhoneNumber] = useState(0);
+  const [loading,setLoading]=useState(false);
+  const navigate=useNavigate();
 
   const handleSubmit = async () => {
     if (orderAddress === "" || name === "" || phone === 0) {
       alert("Please fill in all fields");
       return;
     }
-
+    setLoading(true);
     try {
       // Step 1: Create Order from Backend
       const { data } = await axios.post(
@@ -33,9 +36,9 @@ export default function BuyOrder() {
         key: "rzp_test_sy0ik5pd9JpjmO", // Razorpay Key ID
         amount: data.amount,
         currency: "INR",
-        name: "Myntra",
+        name: "Arevei Company Ltd",
         description: "Purchase Product",
-        image: "/your_logo.png", // Optional
+        image: "https://www.arevei.com/assets/images/Arevei%20Wordmark.svg", // Optional
         order_id: data.id, // Backend Order ID
         handler: async function (response) {
           // Payment successful, send data to backend
@@ -57,6 +60,7 @@ export default function BuyOrder() {
           );
 
           console.log(result.data);
+          navigate("/myorders")
         },
         prefill: {
           name: name,
@@ -71,7 +75,11 @@ export default function BuyOrder() {
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } catch (err) {
+      alert(`${err}`);
       console.log(err);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -190,9 +198,13 @@ export default function BuyOrder() {
       </div>
 
       <div className="text-center">
-        <Button variant="contained" color="primary" className="w-full py-2" onClick={handleSubmit}>
+        {
+          !loading?
+          <Button variant="contained" color="primary" className="w-full py-2" onClick={handleSubmit}>
           Payment & Purchase
-        </Button>
+        </Button>:
+        <CircularProgress/>
+        }
       </div>
     </div>
   );
