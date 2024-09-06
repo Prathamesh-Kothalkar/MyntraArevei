@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 // import logo from "MyntraArevei\src\assets\newlogo.jpeg";
 import './signUp.css'
 import axios from 'axios';
+const server = import.meta.env.VITE_BACKEND_SERVER;
 export default function SignUp() {
     let reftype = useRef();
     const navigate  = useNavigate();
@@ -26,7 +27,7 @@ export default function SignUp() {
     const handleSubmitSignup= async(e)=>{
             e.preventDefault();
             try {
-                const response = await axios.post("http://localhost:3000/api/v1/user/signup", SignForm);
+                const response = await axios.post(`${server}/v1/user/signup`, SignForm);
                 alert(response.data.message);
                 navigate('/login');
             } catch (err) {

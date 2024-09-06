@@ -2,7 +2,7 @@ import { Button, CircularProgress, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+const server = import.meta.env.VITE_BACKEND_SERVER;
 export default function BuyOrder() {
   const [address, setAddress] = useState([]);
   const [payment, setPayment] = useState(0);
@@ -22,7 +22,7 @@ export default function BuyOrder() {
     try {
       // Step 1: Create Order from Backend
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/payment/order",
+        `${server}/v1/payment/order`,
         { amount: payment * 100 }, // Razorpay expects amount in paise
         {
           headers: {
@@ -50,7 +50,7 @@ export default function BuyOrder() {
           };
 
           const result = await axios.post(
-            "http://localhost:3000/api/v1/orders",
+            `${server}/v1/orders`,
             orderData,
             {
               headers: {
@@ -86,7 +86,7 @@ export default function BuyOrder() {
   useEffect(() => {
     const fetchAddress = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/v1/user/address`, {
+        const response = await axios.get(`${server}/v1/user/address`, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
@@ -99,7 +99,7 @@ export default function BuyOrder() {
 
     const fetchPayment = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/v1/cart/details`, {
+        const response = await axios.get(`${server}/v1/cart/details`, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },

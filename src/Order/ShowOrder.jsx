@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+const server = import.meta.env.VITE_BACKEND_SERVER;
 
 const ShowOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -7,7 +8,8 @@ const ShowOrder = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/v1/orders/", {
+
+        const response = await axios.get(`${server}/v1/orders/`, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
