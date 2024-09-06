@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Button, CircularProgress } from '@mui/material';
 import { UserContext } from '../Context/UserContext';
 
+const server = import.meta.env.VITE_BACKEND_SERVER;
 export default function ProductDetails() {
     // const [alertMessage, setAlertMessage] = useState('');
     const [isAlertVisible, setIsAlertVisible] = useState(false);
@@ -19,7 +20,7 @@ export default function ProductDetails() {
         //api for add to cart
         try{
             setIsAlertVisible(true);
-            const response = await axios.post("http://localhost:3000/api/v1/cart/add", 
+            const response = await axios.post(`${server}/v1/cart/add`, 
                 { productId, img_src, name, price, quantity },
                 {
                     headers:{
@@ -45,7 +46,7 @@ export default function ProductDetails() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/v1/product/${id}`);
+                const response = await axios.get(`${server}/v1/product/${id}`);
                 setData(response.data);
             } catch (error) {
                 console.log(error);

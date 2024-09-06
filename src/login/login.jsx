@@ -4,6 +4,7 @@ import { useContext, useRef, useState } from 'react';
 import axios from 'axios';
 // import './login.css'
 import {UserContext} from "../Context/UserContext"
+const server = import.meta.env.VITE_BACKEND_SERVER;
 
 export default function Login() {
     const {setIsLogin}=useContext(UserContext)
@@ -26,8 +27,8 @@ export default function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
+    try {
+            const response = await axios.post(`${server}/v1/user/signin`, {
                 email,
                 password
             });

@@ -5,6 +5,7 @@ import HeroSlideShow from "../Components/Home/HeroSlideShow";
 import Section from "./Section";
 import axios from "axios";
 import ProductItem from "./Products";
+const server = import.meta.env.VITE_BACKEND_SERVER;
 
 const CategoryPage = () => {
   const { category, subcategory } = useParams();
@@ -14,7 +15,7 @@ const CategoryPage = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/v1/product/category/${category}`);
+        const response = await axios.get(`${server}/v1/product/category/${category}`);
         setData(response.data.products);
       } catch (error) {
         console.error("Error fetching data", error);

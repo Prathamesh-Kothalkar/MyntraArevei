@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from "../Context/UserContext";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+const server = import.meta.env.VITE_BACKEND_SERVER;
 
 const CartItem = ({ item, onRemove }) => {
     return (
@@ -31,11 +32,10 @@ const Cart = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
-
     useEffect(() => {
         const fetchCart = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/v1/cart/", {
+                const response = await axios.get(`${server}/v1/cart/`, {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
@@ -55,8 +55,8 @@ const Cart = () => {
     const handleRemove = async (id) => {
         const productId = id._id;
         console.log(productId);
-        try {
-            const response = await axios.delete("http://localhost:3000/api/v1/cart/remove", {
+    try {
+            const response = await axios.delete(`${server}/v1/cart/remove`, {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token")
                 },

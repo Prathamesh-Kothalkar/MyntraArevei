@@ -6,6 +6,9 @@ import 'animate.css';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+const server = import.meta.env.VITE_BACKEND_SERVER;
+
+
 export default function UserDetails() {
     const [addAdress, setAddAdress] = useState(false);
     const [renderCount, setRenderCount] = useState(0);
@@ -48,7 +51,7 @@ export default function UserDetails() {
         setError(null);
         setSuccess(null);
         try {
-            const response = await axios.post(`http://localhost:3000/api/v1/user/address`, {
+            const response = await axios.post(`${server}/v1/user/address`, {
                 street,
                 city,
                 state,
@@ -72,7 +75,7 @@ export default function UserDetails() {
             setErrorUser(null);
             try {
                 if (isLogin) {
-                    const response = await axios.get(`http://localhost:3000/api/v1/user/profile`, {
+                    const response = await axios.get(`${server}/v1/user/profile`, {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("token")
                         }
@@ -93,7 +96,7 @@ export default function UserDetails() {
             setErrorAddress(null);
             try {
                 if (isLogin) {
-                    const response = await axios.get(`http://localhost:3000/api/v1/user/address`, {
+                    const response = await axios.get(`${server}/v1/user/address`, {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("token")
                         }
