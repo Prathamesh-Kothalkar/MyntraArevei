@@ -2,7 +2,9 @@ import React, {useRef, useState } from 'react'
 import './addProduct.css'
 import axios from 'axios';
 import swal from 'sweetalert';
-export default function Properties() {
+const server = import.meta.env.VITE_BACKEND_SERVER;
+
+export default function AddProduct() {
   const [product,setProduct] = useState({name:'', description:'', price:'', category:'',subCategory:'', brand:'', sizes: [],colors: [], images:[],imagePreviews: [], stock:''});
   const resetBtn = useRef(null);
   const handleChangeAddProduct=(e)=>{
@@ -28,6 +30,8 @@ export default function Properties() {
   const handleformdata = (e)=>{
     e.preventDefault();
     console.log(product);
+    alert('wait for Few Seconds');
+
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('description', product.description);
@@ -43,7 +47,7 @@ export default function Properties() {
     product.images.forEach((image, index) => {
       formData.append('images', image);
     });
-    axios.post('http://localhost:3000/api/v1/product', formData, {
+    axios.post(`${server}/v1/product/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -55,6 +59,7 @@ export default function Properties() {
     dangerMode: true,
   })
   resetBtn.current.click();
+  
 }
   ).catch((err)=>{console.log(err);
     swal({
@@ -89,7 +94,7 @@ export default function Properties() {
                 name="images"
                 multiple
                 onChange={handleImageChange}
- ref={(e)=>{fileInput=e}}hidden/>
+ ref={(e)=>{fileInput=e}} hidden/>
         <div className="imageList">
         {product.imagePreviews.length > 0 && (
     <div className="flex  gap-2 overflow-x-auto">

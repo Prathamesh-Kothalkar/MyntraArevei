@@ -12,6 +12,7 @@ import Cart from './Cart/Cart.jsx'
 import ProductDetails from './productDetails/productDetails.jsx'
 import UserDetails from './User/UserDetails.jsx'
 import BuyOrder from './Order/BuyOrder.jsx'
+import AddProduct from './pages/addProduct.jsx'
 
 
 function App() {
