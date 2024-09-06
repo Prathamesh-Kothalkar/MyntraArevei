@@ -7,36 +7,73 @@ export default function BuyOrder() {
   const [payment, setPayment] = useState(0);
   const [orderAddress, setOrderAddress] = useState("");
   const [paymentMode, setPaymentMode] = useState("Online");
-  const [name,setName]=useState("");
-  const [phone,setPhoneNumber]=useState(0);
+  const [name, setName] = useState("");
+  const [phone, setPhoneNumber] = useState(0);
 
   const handleSubmit = async () => {
     if (orderAddress === "" || name === "" || phone === 0) {
       alert("Please fill in all fields");
       return;
     }
-  
-    const placeTo = `Name: ${name}, Mobile: ${phone}, Address: ${orderAddress}, Payment: Rs.${payment}, Mode: ${paymentMode}`;
-    
-    const orderData = {
-      paymentId: "RANDOM_PAYMENT_ID", 
-      address: placeTo,
-      amount:payment
-    };
-  
+
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/orders/", orderData, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+      // Step 1: Create Order from Backend
+      const { data } = await axios.post(
+        "http://localhost:3000/api/v1/payment/order",
+        { amount: payment * 100 }, // Razorpay expects amount in paise
+        {
+          headers: {
+            Authorization:"Bearer "+localStorage.getItem("token"),
+          },
+        }
+      );
+
+      // Step 2: Initiate Razorpay Payment
+      const options = {
+        key: "rzp_test_sy0ik5pd9JpjmO", // Razorpay Key ID
+        amount: data.amount,
+        currency: "INR",
+        name: "Myntra",
+        description: "Purchase Product",
+        image: "/your_logo.png", // Optional
+        order_id: data.id, // Backend Order ID
+        handler: async function (response) {
+          // Payment successful, send data to backend
+          const orderData = {
+            paymentId: response.razorpay_payment_id,
+            orderId: response.razorpay_order_id,
+            signature: response.razorpay_signature,
+            address: `${name}, Mobile ${phone}, Address: ${orderAddress}`,
+          };
+
+          const result = await axios.post(
+            "http://localhost:3000/api/v1/orders",
+            orderData,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          );
+
+          console.log(result.data);
         },
-      });
-  
-      console.log(response.data);
+        prefill: {
+          name: name,
+          email: "useremail@example.com", // Optional
+          contact: phone,
+        },
+        theme: {
+          color: "#F37254",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
     } catch (err) {
       console.log(err);
     }
   };
-  
 
   useEffect(() => {
     const fetchAddress = async () => {
