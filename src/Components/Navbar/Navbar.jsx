@@ -8,6 +8,7 @@ import {
   Menu,
   Login,
   Logout,
+  AddBox,
 } from "@mui/icons-material";
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 
@@ -161,6 +162,9 @@ const Navbar = () => {
           <IconButton onClick={() => { navigate("/user") }}>
               {/* <FavoriteBorder /> */}
               <AccountCircleTwoToneIcon></AccountCircleTwoToneIcon>
+          </IconButton>
+          <IconButton onClick={()=>navigate('/addProduct')}>
+              <AddBox />
           </IconButton>
           <IconButton onClick={() => { navigate("/cart") }}>
             <Badge badgeContent={2} color="secondary">
