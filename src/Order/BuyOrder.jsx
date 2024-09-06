@@ -23,7 +23,7 @@ export default function BuyOrder() {
       // Step 1: Create Order from Backend
       const { data } = await axios.post(
         `${server}/v1/payment/order`,
-        { amount: payment * 100 }, // Razorpay expects amount in paise
+        { amount: payment }, // Razorpay expects amount in paise
         {
           headers: {
             Authorization:"Bearer "+localStorage.getItem("token"),
