@@ -3,18 +3,19 @@ import 'animate.css';
 import './ProductDetails.css';
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import { UserContext } from '../Context/UserContext';
 
 export default function ProductDetails() {
-    const [alertMessage, setAlertMessage] = useState('');
+    // const [alertMessage, setAlertMessage] = useState('');
     const [isAlertVisible, setIsAlertVisible] = useState(false);
     const [data, setData] = useState(null);
     const { id } = useParams();
+    const [loading,setLoading]=useState(false);
     const {isLogin}=useContext(UserContext);
 
     const handleClick = async (productId,img_src,name, price, quantity) => {
-        
+        setLoading(true);
         //api for add to cart
         try{
             setIsAlertVisible(true);
@@ -26,13 +27,17 @@ export default function ProductDetails() {
                     }
                 }
             );
-         console.log(response.data);
-         
-            setAlertMessage('Added to Cart');
+            
+            alert(`Added to Cart ${response.data}`);
+            
+           
         }
         catch(err){
             console.log(err);
             
+        }
+        finally{
+            setLoading(false);
         }
        
     };
@@ -73,7 +78,10 @@ export default function ProductDetails() {
                         !isLogin?
                         <Button variant='contained' color='success' onClick={()=>{alert("Login First")}} className="">Add to Cart</Button>
                         :
-                        <Button variant='contained' color='success' onClick={()=>{handleClick(data._id,data.images[0],data.name,data.price,1)}} className="">Add to Cart</Button>
+                         !loading?
+                         <Button variant='contained' color='success' onClick={()=>{handleClick(data._id,data.images[0],data.name,data.price,1)}} className="">Add to Cart</Button>
+                         :
+                         <CircularProgress/>
                     }
                 </div>
             </div>
@@ -82,7 +90,7 @@ export default function ProductDetails() {
                 <div className="alert-container">
                     <div className="alert-card">
                         <div className="alert-message">
-                            <i className="fa-solid fa-check-circle"></i> {alertMessage}
+                            
                         </div>
                     </div>
                 </div>
