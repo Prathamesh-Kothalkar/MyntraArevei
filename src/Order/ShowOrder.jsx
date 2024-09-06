@@ -56,8 +56,8 @@ const ShowOrder = () => {
                   <ul className="ml-4 list-disc">
                     {order.items.map((orderItem, idx) => (
                       orderItem.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="text-gray-500">
-                          Product Name: {item.name}, Quantity: {item.quantity}, Product ID: {item.productId}
+                        <li key={itemIndex} className="text-gray-900 font-semibold ">
+                           <span className="text-lg ">Name:</span> {item.name} <br /> <span className="text-lg ">Quantity:</span> {item.quantity} <br /> <span className="text-lg ">Amount of Each :</span> Rs.{item.price}/-
                         </li>
                       ))
                     ))}

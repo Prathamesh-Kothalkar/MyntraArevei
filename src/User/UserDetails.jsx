@@ -3,10 +3,14 @@ import axios from 'axios';
 import { UserContext } from "../Context/UserContext"
 import "./UserDetails.css";
 import 'animate.css';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserDetails() {
     const [addAdress, setAddAdress] = useState(false);
     const [renderCount, setRenderCount] = useState(0);
+    const navigate=useNavigate();
+
     useEffect(() => {
         if (renderCount < 2) {
             setRenderCount(renderCount + 1);
@@ -133,9 +137,16 @@ export default function UserDetails() {
                     :
                     <div className='containerUserDetails'>
                         <div className="card1UserDetails">
-                            <button className="setaddressButton" onClick={()=>setAddAdress(!addAdress)}>Add Address</button>
-                            <br />
+                            <div className="">
                             <i class="fa-solid fa-user"></i>
+                            </div>
+                            <br />
+                            <div className="mt-3">
+                                <Button variant='contained' className='m-2' color='success' onClick={()=>setAddAdress(!addAdress)}>Add Address</Button>
+                                <Button variant='contained' className='m-2' color='warning' onClick={()=>navigate("/myorders")}>My Orders</Button>
+                            </div>
+                           
+                            
                         </div>
                         <div className="card1UserDetails">
                             <div className='detailheadingUserDetails animate__animated animate__lightSpeedInLeft animate__delay-0s'>User Details</div>
