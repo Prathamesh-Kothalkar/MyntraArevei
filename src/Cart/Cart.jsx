@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom';
 const server = import.meta.env.VITE_BACKEND_SERVER;
 
 const CartItem = ({ item, onRemove }) => {
+    console.log(item);
+    
     return (
         <div className="flex items-center p-4 border-b border-gray-300">
             <div className="">
-                <img src={item.img} alt={item.name} className="w-28 h-28 rounded" />
+                <img src={item.img_src} alt={item.name} className="w-28 h-28 rounded" />
             </div>
             <div className="flex flex-col mx-3 flex-1">
                 <h2 className="text-lg font-medium">{item.name}</h2>

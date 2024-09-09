@@ -29,7 +29,7 @@ export default function ProductDetails() {
                 }
             );
             
-            alert(`Added to Cart ${response.data}`);
+            alert(`Added to Cart`);
             
            
         }
@@ -48,6 +48,7 @@ export default function ProductDetails() {
             try {
                 const response = await axios.get(`${server}/v1/product/${id}`);
                 setData(response.data);
+                console.log(data)
             } catch (error) {
                 console.log(error);
             }

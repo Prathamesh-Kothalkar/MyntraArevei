@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function ProductItem({ images, name, price, stock, id }) {
     const navigate = useNavigate();
   const handleViewProduct = () => {
-    alert(`Product ID: ${id}`);
+    // alert(`Product ID: ${id}`);
     navigate(`/product/${id}`);
   };
 
