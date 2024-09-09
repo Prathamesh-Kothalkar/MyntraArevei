@@ -65,7 +65,7 @@ export default function ProductDetails() {
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-24 p-4">
                 <div className="">
-                    <img src={data.images[0]} alt={data.name} className="w-full h-96 object-cover rounded-lg" />
+                    <img src={data.images[0]} alt={data.name} className="w-full h-96 object-contain rounded-lg" />
                 </div>
                 <div className="">
                     <h1 className="text-2xl font-bold mb-4">{data.name.toUpperCase()}</h1>

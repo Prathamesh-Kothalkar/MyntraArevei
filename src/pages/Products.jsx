@@ -15,7 +15,7 @@ function ProductItem({ images, name, price, stock, id }) {
         <img
           src={images[0]}
           alt={name}
-          className="w-full h-64 object-cover"
+          className="w-64 h-64 object-fill"
         />
       </div>
       <div className="p-4 flex flex-col justify-between flex-grow">
