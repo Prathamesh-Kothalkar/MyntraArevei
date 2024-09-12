@@ -1,36 +1,62 @@
-import React from 'react';
-import { Zoom, Fade, Slide } from 'react-slideshow-image';
+import { Skeleton } from '@mui/material';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
+const server = import.meta.env.VITE_BACKEND_SERVER;
+
 const HeroSlideshow = () => {
-    const images = [
-        "https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/7/25/b656a7f4-4688-4997-bb7c-54b78793981e1658752386588-Western-Wear_Desk.jpg",
-        "https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/6/27/53b4daed-cd2c-4111-86c5-14f737eceb351656325318973-Handbags_Desk.jpg",
-        "https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/5/31/4031994d-9092-4aa7-aea1-f52f2ae5194f1654006594976-Activewear_DK.jpg",
-        "https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/7/25/b656a7f4-4688-4997-bb7c-54b78793981e1658752386588-Western-Wear_Desk.jpg"
-    ];
-    const links = [
-        "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-        "https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80",
-        "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    ]
+    const [images, setImages] = useState([]);
+    const [links, setLinks] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${server}/v1/home/Hero`);
+                const data = response.data.slides[0]; // Access the first element in the slides array
+                setImages(data.images || []); // Set images array
+                setLinks(data.links || []); // Set links array
+            } catch (err) {
+                console.error('Failed to fetch data:', err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
-        <div className="mt-24">
-            <Slide scale={1.4} indicators={true}>
-            {images.map((each, index) => (
-                <div key={index} style={{ width: "100%" }}>
-                   <a href={links[index]}>
-                   <img
-                        alt="Slide Image"
-                        src={each}
-                        className="object-fit w-full h-44 md:h-auto"
-                                />
-                   </a>
-                </div>
-            ))}
-        </Slide>
-        </div>
-        
+        <>
+            {
+                !isLoading ?
+                    images.length > 0 ? (
+                        <div className="mt-24">
+                            <Slide scale={1.4} indicators={true}>
+                                {images.map((image, index) => (
+                                    <div key={index} style={{ width: "100%" }}>
+                                        <a href={links[index] || "#"}> {/* Use the corresponding link */}
+                                            <img
+                                                alt={`Slide ${index}`}
+                                                src={image}
+                                                className="object-fit w-full h-44 md:h-auto"
+                                            />
+                                        </a>
+                                    </div>
+                                ))}
+                            </Slide>
+                        </div>
+                    ) : (
+                        <div className="mt-24 text-center">
+                            <p>No slides available.</p>
+                        </div>
+                    ) :
+                    <div className="mt-24">
+                        <Skeleton variant='rectangular' key="loading-skeleton" style={{height:"250px"}} className='h-44 md:h-100 w-full' />
+                    </div>
+            }
+        </>
     );
 };
 
