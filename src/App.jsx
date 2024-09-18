@@ -14,6 +14,7 @@ import UserDetails from './User/UserDetails.jsx'
 import BuyOrder from './Order/BuyOrder.jsx'
 import AddProduct from './pages/addProduct.jsx'
 import ShowOrder from "./Order/ShowOrder.jsx"
+import SearchProductPage from './pages/searchProductPage.jsx'
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path='/details' element={<BuyOrder/>}></Route>
           <Route path='/addProduct' element={<AddProduct/>}></Route>
           <Route path='/myorders' element={<ShowOrder/>}></Route>
+          <Route path='/search' element={<SearchProductPage/>}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

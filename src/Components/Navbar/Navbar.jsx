@@ -34,6 +34,7 @@ const Navbar = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchProduct,setSearchProduct] = useState('');
   const { isLogin, setIsLogin } = useContext(UserContext)
   const colors = {
     Men: "text-blue-500 border-blue-500",
@@ -53,7 +54,10 @@ const Navbar = () => {
   };
 
   const navigate = useNavigate();
-
+  const handleSearch = (e)=>{
+    e.preventDefault();
+    navigate(`/search?q=${searchProduct.trimStart()}`)
+  }
   return (
     <nav className="bg-white text-black shadow-md fixed top-0 left-0 right-0 z-20">
       <div className="container mx-auto flex items-center justify-between px-2 md:px-8 py-3">
@@ -94,6 +98,7 @@ const Navbar = () => {
                 <Transition
                   show={isHovering}
                   enter="transition-opacity duration-150"
+                  
                   enterFrom="opacity-0"
                   enterTo="opacity-100"
                   leave="transition-opacity duration-150"
@@ -132,14 +137,16 @@ const Navbar = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="hidden md:flex flex-1 items-center bg-gray-200 rounded-md p-2 mx-8">
-          <Search className="text-gray-600" />
+        <form className="hidden md:flex flex-1 items-center bg-gray-200 rounded-md p-2 mx-8">
+          <button type="submit" disabled={searchProduct===""} onClick={handleSearch}><Search className="text-gray-600"  /></button>
           <input
             type="text"
             placeholder="Search for products, brands and more"
             className="ml-2 bg-transparent outline-none flex-grow"
+            onChange={(e)=>setSearchProduct(e.target.value)}
+            value={searchProduct}
           />
-        </div>
+        </form>
         {/* Icons */}
         <div className="flex items-center space-x-6">
           <div className="hidden md:flex">

@@ -2,11 +2,20 @@ import React, {useRef, useState } from 'react'
 import './addProduct.css'
 import axios from 'axios';
 import swal from 'sweetalert';
+
+import { MenuItem, FormControl, InputLabel, Select, Checkbox, ListItemText } from '@mui/material';
 const server = import.meta.env.VITE_BACKEND_SERVER;
 
+
+const options = ['red', 'blue', 'yellow', 'green'];
 export default function AddProduct() {
   const [product,setProduct] = useState({name:'', description:'', price:'', category:'',subCategory:'', brand:'', sizes: [],colors: [], images:[],imagePreviews: [], stock:''});
-  const resetBtn = useRef(null);
+  const categories = {
+    men: ['shirts', 'trousers', 'shoes'],
+    women: ['dresses', 'handbags', 'shoes'],
+    kids: ['toys', 'clothing', 'shoes'],
+  };
+  const resetBtn = useRef();
   const handleChangeAddProduct=(e)=>{
         setProduct({...product,[e.target.name]:e.target.value})
     }
@@ -16,6 +25,7 @@ export default function AddProduct() {
         ...product,
         [fieldName]: values
       });
+      
     };
     const handleImageChange = (e) => {
       const files = Array.from(e.target.files);
@@ -26,6 +36,12 @@ export default function AddProduct() {
         imagePreviews: previews // Store URLs for preview
       });
       document.querySelector(".postform").classList.add("jadu");
+    };
+    const [selectedOptions, setSelectedOptions] = useState([]);
+
+    const handleChange = (event) => {
+      const { value } = event.target;
+      setSelectedOptions(typeof value === 'string' ? value.split(',') : value);
     };
   const handleformdata = (e)=>{
     e.preventDefault();
@@ -39,12 +55,15 @@ export default function AddProduct() {
     formData.append('category', product.category);
     formData.append('subCategory', product.subCategory);
     formData.append('brand', product.brand);
-    formData.append('sizes', product.sizes);
-    formData.append('colors', product.colors);
+    product.images.forEach((size) => {
+        formData.append('sizes', size);
+      });
+    product.images.forEach((color) => {
+        formData.append('colors', color);
+      });
     formData.append('stock', product.stock);
     
-    // Append each image to FormData
-    product.images.forEach((image, index) => {
+    product.images.forEach((image) => {
       formData.append('images', image);
     });
     axios.post(`${server}/v1/product/`, formData, {
@@ -141,32 +160,6 @@ export default function AddProduct() {
               />
             </div>
 
-            {/* Category */}
-            <div>
-              <label className="block text-lg font-medium mb-1">Category</label>
-              <input
-                type="text"
-                name="category"
-                value={product.category}
-                onChange={handleChangeAddProduct}
-                className="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                placeholder="Enter product category"
-              />
-            </div>
-
-            {/* Sub-Category */}
-            <div>
-              <label className="block text-lg font-medium mb-1">Sub-Category</label>
-              <input
-                type="text"
-                name="subCategory"
-                value={product.subCategory}
-                onChange={handleChangeAddProduct}
-                className="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                placeholder="Enter product sub-category"
-              />
-            </div>
-
             {/* Brand */}
             <div>
               <label className="block text-lg font-medium mb-1">Brand</label>
@@ -180,6 +173,40 @@ export default function AddProduct() {
               />
             </div>
 
+            {/* Category */}
+            <div>
+              <label className="block text-lg font-medium mb-1">Category</label>
+              <select
+                name="category"
+                value={product.category}
+                onChange={handleChangeAddProduct}
+                className="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              >
+                <option value='' className=' text-slate-500'>Select Category</option>
+                {
+                  Object.keys(categories).map((pcategory)=><option value={pcategory} className=' text-slate-500'>{pcategory}</option>)
+                }
+              </select>
+            </div>
+
+            {/* Sub-Category */}
+            <div className='sm:col-[span_2/span_2]'>
+              <label className="block text-lg font-medium mb-1">Sub-Category</label>
+              <select
+                name="subCategory"
+                value={product.subCategory}
+                onChange={handleChangeAddProduct}
+                className="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              >
+               <option value='' className=' text-slate-500'>Select sub-Category</option>
+                {
+                  product.category !== '' && categories[product.category].map((scategory)=><option value={scategory} className=' text-slate-500'>{scategory}</option>)
+                }
+                </select>
+            </div>
+
+            
+
            {/* Sizes (Array Input) */}
            <div>
               <label className="block text-lg font-medium mb-1">Sizes</label>
@@ -192,7 +219,24 @@ export default function AddProduct() {
                 placeholder="Enter sizes (comma separated)"
               />
             </div>
-
+            <FormControl fullWidth>
+      <InputLabel id="multiple-select-label">Select Options</InputLabel>
+      <Select
+        labelId="multiple-select-label"
+        multiple
+        name="colors"
+        value={selectedOptions}
+        onChange={handleChange}
+        renderValue={(selected) => selected.join(', ')}
+      >
+        {options.map((option) => (
+          <MenuItem key={option} value={option}>
+            <Checkbox checked={selectedOptions.indexOf(option) > -1} />
+            <ListItemText primary={option} />
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
             {/* Colors (Array Input) */}
             <div>
               <label className="block text-lg font-medium mb-1">Colors</label>
